@@ -1,0 +1,273 @@
+{
+  "config": "{\"version\":\"5.42\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY18SU07\",\"version\":\"3.21\",\"type\":2},\"customTheme\":{\"name\":\"Electric\",\"version\":\"3.22\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"isPersistentUserStateDisabled\":false,\"hideVisualContainerHeader\":false,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"defaultFilterActionIsDataFilter\":true,\"allowChangeFilterTypes\":false,\"disableFilterPaneSearch\":false,\"useCrossReportDrillthrough\":true,\"allowInlineExploration\":true,\"allowAutomatedInsightsNotification\":true},\"objects\":{\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "ReportSectiondc1a0f98b64ed6c5082b",
+      "config": "{}",
+      "name": "Pod"
+    },
+    {
+      "boundSection": "ReportSection0e434742e70cc707508e",
+      "config": "{}",
+      "name": "Pod1"
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY18SU07",
+            "path": "BaseThemes/CY18SU07.json",
+            "type": 202
+          },
+          {
+            "name": "Electric",
+            "path": "BuiltInThemes/Electric.json",
+            "type": 201
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "items": [
+          {
+            "name": "PBI_CV_EB3A4088_75C5_4746_9D8B_255A7B7ECD6C.pbiviz.json",
+            "path": "PBI_CV_EB3A4088_75C5_4746_9D8B_255A7B7ECD6C.pbiviz.json",
+            "type": 5
+          }
+        ],
+        "name": "PBI_CV_EB3A4088_75C5_4746_9D8B_255A7B7ECD6C",
+        "type": 0
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Overview",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection0e434742e70cc707508e",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"218be6d23dc427e40005\",\"layouts\":[{\"id\":0,\"position\":{\"x\":362.24,\"y\":20.48,\"z\":2000,\"width\":463.36,\"height\":433.92}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"Category\":[{\"queryRef\":\"listings.neighbourhood\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(listings.price)\"}],\"X\":[{\"queryRef\":\"occupancy.% occupied\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0},{\"Name\":\"o\",\"Entity\":\"occupancy\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"neighbourhood\"},\"Name\":\"listings.neighbourhood\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"price\"}},\"Function\":1},\"Name\":\"Sum(listings.price)\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"% occupied\"},\"Name\":\"occupancy.% occupied\"}]},\"columnProperties\":{\"occupancy.% occupied\":{\"displayName\":\"Occupancy rate\"},\"Sum(listings.price)\":{\"displayName\":\"Average listing price\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"enableBackground\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"backgroundTransparency\":{\"expr\":{\"Literal\":{\"Value\":\"88L\"}}}}}],\"bubbles\":[{\"properties\":{\"bubbleSize\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"markerShape\":{\"expr\":{\"Literal\":{\"Value\":\"'circle'\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"FillRule\":{\"Input\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"listings\"}},\"Property\":\"id\"}},\"Function\":2}},\"FillRule\":{\"linearGradient2\":{\"min\":{\"color\":{\"Literal\":{\"Value\":\"'#1DD5EE'\"}}},\"max\":{\"color\":{\"Literal\":{\"Value\":\"'#3049AD'\"}}},\"nullColoringStrategy\":{\"strategy\":{\"Literal\":{\"Value\":\"'asZero'\"}}}}}}}}}}},\"selector\":{\"data\":[{\"dataViewWildcard\":{\"matchingOption\":1}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Price and occupancy by neighbourhood'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.4}}}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"'13'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'left'\"}}}}}]}}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"listings\"}},\"Property\":\"neighbourhood\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"neighbourhood\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}],[{\"Literal\":{\"Value\":\"''\"}}],[{\"Literal\":{\"Value\":\"'Fairmount Park'\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":true}]",
+          "height": 433.92,
+          "width": 463.36,
+          "x": 362.24,
+          "y": 20.48,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"4b83ff8d57aab2736302\",\"layouts\":[{\"id\":0,\"position\":{\"x\":855.04,\"y\":20.48,\"z\":0,\"width\":401.92,\"height\":679.68}}],\"singleVisual\":{\"visualType\":\"map\",\"projections\":{\"Size\":[{\"queryRef\":\"listings.Avg Annual Revenue\"}],\"Category\":[{\"queryRef\":\"listings.zipcode\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Avg Annual Revenue\"},\"Name\":\"listings.Avg Annual Revenue\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"zipcode\"},\"Name\":\"listings.zipcode\"}]},\"columnProperties\":{\"listings.Avg Annual Revenue\":{\"displayName\":\"Annual revenue estimate\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"mapControls\":[{\"properties\":{\"autoZoom\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"mapStyles\":[{\"properties\":{\"mapTheme\":{\"expr\":{\"Literal\":{\"Value\":\"'grayscale'\"}}}}}],\"bubbles\":[{\"properties\":{\"bubbleSize\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Annual revenue (estimate)'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.4}}}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'left'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"'13'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 679.68,
+          "width": 401.92,
+          "x": 855.04,
+          "y": 20.48,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"87448fe56037477b9825\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24.32,\"y\":471.04,\"z\":3000,\"width\":801.28,\"height\":227.84}}],\"singleVisual\":{\"visualType\":\"lineStackedColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Date.Date.Variation.Date Hierarchy.Year\",\"active\":true}],\"Y2\":[{\"queryRef\":\"Avg(reviews.CognitiveServices.ScoreSentiment)\"}],\"Y\":[{\"queryRef\":\"CountNonNull(reviews.id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0},{\"Name\":\"r\",\"Entity\":\"reviews\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date.Variation.Date Hierarchy.Year\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"CognitiveServices.ScoreSentiment\"}},\"Function\":1},\"Name\":\"Avg(reviews.CognitiveServices.ScoreSentiment)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(reviews.id)\"}]},\"columnProperties\":{\"CountNonNull(reviews.id)\":{\"displayName\":\"Review Count\"},\"Avg(reviews.CognitiveServices.ScoreSentiment)\":{\"displayName\":\"Average Sentiment\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"valueAxis\":[{\"properties\":{}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"'13'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.4}}}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Reviews and sentiment over time'\"}}}}}]}}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Date\"}},\"Property\":\"Date\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":true}]",
+          "height": 227.84,
+          "width": 801.28,
+          "x": 24.32,
+          "y": 471.04,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"f082684083370cac048a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24.32,\"y\":20.48,\"z\":1000,\"width\":321.28,\"height\":433.92}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"listings.property_type\",\"active\":true}],\"Y\":[{\"queryRef\":\"listings.Price per listing\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"property_type\"},\"Name\":\"listings.property_type\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Price per listing\"},\"Name\":\"listings.Price per listing\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Price per listing\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryAxis\":[{\"properties\":{\"concatenateLabels\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Listing price by property type'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.4}}}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"'13'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'left'\"}}}}}]}}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"listings\"}},\"Property\":\"property_type\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"property_type\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}],[{\"Literal\":{\"Value\":\"''\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":true}]",
+          "height": 433.92,
+          "width": 321.28,
+          "x": 24.32,
+          "y": 20.48,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 5",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection259db5dfeb05e2d7a32b",
+      "ordinal": 6,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"4f0bc4372be016b4a690\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":342,\"width\":404,\"height\":332,\"z\":1000}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(reviews.CognitiveServices.ScoreSentiment)\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"reviews\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"CognitiveServices.ScoreSentiment\"}},\"Function\":0},\"Name\":\"Sum(reviews.CognitiveServices.ScoreSentiment)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 332.00,
+          "width": 404.00,
+          "x": 10.00,
+          "y": 342.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"909fdd9b04ce6c9e20a6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.873772791023843,\"y\":0,\"z\":0,\"width\":403.9270687237027,\"height\":332.1178120617111}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"occupancy.% occupied\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"occupancy\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"% occupied\"},\"Name\":\"occupancy.% occupied\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"anomalyDetection\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transform\":{\"algorithm\":\"SampleAndDetectAnomaly\",\"parameters\":[{\"Literal\":{\"Value\":\"1D\"},\"Name\":\"Sensitivity\"},{\"Literal\":{\"Value\":\"3500L\"},\"Name\":\"SampleSizePerSeries\"}]},\"explainBy\":{\"exprs\":[],\"kind\":\"ExprList\"},\"displayName\":{\"expr\":{\"Literal\":{\"Value\":\"'Find anomalies 1'\"}}}},\"selector\":{\"metadata\":\"occupancy.% occupied\",\"id\":\"1\"}}]}}}",
+          "filters": "[]",
+          "height": 332.12,
+          "width": 403.93,
+          "x": 9.87,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"f3c5575e29b53b4843cc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":423.4855545200373,\"y\":0,\"z\":2000,\"width\":576.1789375582479,\"height\":360.2609506057782}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(weather.PRCP)\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"weather\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"PRCP\"}},\"Function\":0},\"Name\":\"Sum(weather.PRCP)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 360.26,
+          "width": 576.18,
+          "x": 423.49,
+          "y": 0.00,
+          "z": 2000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 4",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection3a854e2c93c07976f386",
+      "ordinal": 5,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"001a82afb13cd67cdbe4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":342,\"width\":404,\"height\":332,\"z\":1000}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(reviews.CognitiveServices.ScoreSentiment)\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"reviews\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"CognitiveServices.ScoreSentiment\"}},\"Function\":0},\"Name\":\"Sum(reviews.CognitiveServices.ScoreSentiment)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 332.00,
+          "width": 404.00,
+          "x": 10.00,
+          "y": 342.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"01331423de1f85e5aa4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.873772791023843,\"y\":0,\"z\":0,\"width\":403.9270687237027,\"height\":332.1178120617111}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"occupancy.% occupied\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"occupancy\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"% occupied\"},\"Name\":\"occupancy.% occupied\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"anomalyDetection\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transform\":{\"algorithm\":\"SampleAndDetectAnomaly\",\"parameters\":[{\"Literal\":{\"Value\":\"1D\"},\"Name\":\"Sensitivity\"},{\"Literal\":{\"Value\":\"3500L\"},\"Name\":\"SampleSizePerSeries\"}]},\"explainBy\":{\"exprs\":[],\"kind\":\"ExprList\"},\"displayName\":{\"expr\":{\"Literal\":{\"Value\":\"'Find anomalies 1'\"}}}},\"selector\":{\"metadata\":\"occupancy.% occupied\",\"id\":\"1\"}}]}}}",
+          "filters": "[]",
+          "height": 332.12,
+          "width": 403.93,
+          "x": 9.87,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"bac8a5a15f5b7d962f62\",\"layouts\":[{\"id\":0,\"position\":{\"x\":423.4855545200373,\"y\":0,\"z\":2000,\"width\":576.1789375582479,\"height\":360.2609506057782}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(weather.PRCP)\"}],\"Category\":[{\"queryRef\":\"Date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"weather\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"PRCP\"}},\"Function\":0},\"Name\":\"Sum(weather.PRCP)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"Date.Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 360.26,
+          "width": 576.18,
+          "x": 423.49,
+          "y": 0.00,
+          "z": 2000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection6b5f87207b92fb6293ee",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3af07919d2341444f395\",\"layouts\":[{\"id\":0,\"position\":{\"x\":112.64,\"y\":125.44,\"z\":1,\"width\":999.68,\"height\":469.76}}],\"singleVisual\":{\"visualType\":\"keyDriversVisual\",\"projections\":{\"Target\":[{\"queryRef\":\"listings.Occupancy\"}],\"ExplainBy\":[{\"queryRef\":\"Sum(listings.accommodates)\"},{\"queryRef\":\"listings.amenities\"},{\"queryRef\":\"Sum(listings.bathrooms)\"},{\"queryRef\":\"Sum(listings.bedrooms)\"},{\"queryRef\":\"Sum(listings.beds)\"},{\"queryRef\":\"Sum(listings.cleaning_fee)\"},{\"queryRef\":\"Sum(listings.extra_people)\"},{\"queryRef\":\"Sum(listings.number_of_reviews)\"},{\"queryRef\":\"listings.neighbourhood\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Occupancy\"},\"Name\":\"listings.Occupancy\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"accommodates\"}},\"Function\":0},\"Name\":\"Sum(listings.accommodates)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"amenities\"},\"Name\":\"listings.amenities\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"bathrooms\"}},\"Function\":0},\"Name\":\"Sum(listings.bathrooms)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"bedrooms\"}},\"Function\":0},\"Name\":\"Sum(listings.bedrooms)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"beds\"}},\"Function\":0},\"Name\":\"Sum(listings.beds)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"cleaning_fee\"}},\"Function\":0},\"Name\":\"Sum(listings.cleaning_fee)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"extra_people\"}},\"Function\":0},\"Name\":\"Sum(listings.extra_people)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"number_of_reviews\"}},\"Function\":0},\"Name\":\"Sum(listings.number_of_reviews)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"neighbourhood\"},\"Name\":\"listings.neighbourhood\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"accommodates\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"keyDrivers\":[{\"properties\":{\"targetValue\":{\"expr\":{\"Literal\":{\"Value\":\"'''292 - 365 days'''\"}}},\"selectedAnalysis\":{\"expr\":{\"Literal\":{\"Value\":\"'topProfiles'\"}}},\"selectedNumericAnalysis\":{\"expr\":{\"Literal\":{\"Value\":\"'Categorical'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 469.76,
+          "width": 999.68,
+          "x": 112.64,
+          "y": 125.44,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 3",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection799b8d73e57769b50685",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3e1075e496bc552d001e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.765721331689273,\"y\":0,\"z\":0,\"width\":1222.4907521578298,\"height\":665.8446362515413}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Y\":[{\"queryRef\":\"CountNonNull(reviews.reviewer_id)\"}],\"Category\":[{\"queryRef\":\"reviews.date\",\"active\":true}],\"Tooltips\":[{\"queryRef\":\"Min(reviews.comments)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"reviews\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"reviewer_id\"}},\"Function\":5},\"Name\":\"CountNonNull(reviews.reviewer_id)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"date\"},\"Name\":\"reviews.date\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"comments\"}},\"Function\":2},\"Name\":\"Min(reviews.comments)\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"anomalyDetection\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transform\":{\"algorithm\":\"SampleAndDetectAnomaly\",\"parameters\":[{\"Literal\":{\"Value\":\"0.7D\"},\"Name\":\"Sensitivity\"},{\"Literal\":{\"Value\":\"3500L\"},\"Name\":\"SampleSizePerSeries\"}]},\"explainBy\":{\"exprs\":[{\"expr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"reviews\"}},\"Property\":\"comments\"}}},{\"expr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"reviews\"}},\"Property\":\"listing_id\"}}},{\"expr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"reviews\"}},\"Property\":\"reviewer_name\"}}}],\"kind\":\"ExprList\"},\"displayName\":{\"expr\":{\"Literal\":{\"Value\":\"'Find anomalies 1'\"}}},\"markerColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.25}}}}},\"markerShapeSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"metadata\":\"CountNonNull(reviews.reviewer_id)\",\"id\":\"1\"}}]}}}",
+          "filters": "[]",
+          "height": 665.84,
+          "width": 1222.49,
+          "x": 9.77,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 6",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection90c223905e10a69200d2",
+      "ordinal": 7,
+      "visualContainers": [],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Key influencers",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectiondc1a0f98b64ed6c5082b",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"224df866f56b2e090ca8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.24,\"y\":0,\"z\":1,\"width\":1269.76,\"height\":720.64}}],\"singleVisual\":{\"visualType\":\"keyDriversVisual\",\"projections\":{\"ExplainBy\":[{\"queryRef\":\"Sum(listings.accommodates)\"},{\"queryRef\":\"listings.amenities\"},{\"queryRef\":\"Sum(listings.bathrooms)\"},{\"queryRef\":\"listings.bed_type\"},{\"queryRef\":\"Sum(listings.bedrooms)\"},{\"queryRef\":\"Sum(listings.beds)\"},{\"queryRef\":\"listings.cancellation_policy\"},{\"queryRef\":\"Sum(listings.cleaning_fee)\"},{\"queryRef\":\"listings.neighbourhood\"},{\"queryRef\":\"listings.property_type\"},{\"queryRef\":\"listings.room_type\"},{\"queryRef\":\"Sum(listings.square_feet)\"},{\"queryRef\":\"listings.space\"}],\"Target\":[{\"queryRef\":\"listings.Occupancy\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"l\",\"Entity\":\"listings\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"accommodates\"}},\"Function\":0},\"Name\":\"Sum(listings.accommodates)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"amenities\"},\"Name\":\"listings.amenities\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"bathrooms\"}},\"Function\":0},\"Name\":\"Sum(listings.bathrooms)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"bed_type\"},\"Name\":\"listings.bed_type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"bedrooms\"}},\"Function\":0},\"Name\":\"Sum(listings.bedrooms)\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"beds\"}},\"Function\":0},\"Name\":\"Sum(listings.beds)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"cancellation_policy\"},\"Name\":\"listings.cancellation_policy\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"cleaning_fee\"}},\"Function\":0},\"Name\":\"Sum(listings.cleaning_fee)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"neighbourhood\"},\"Name\":\"listings.neighbourhood\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"property_type\"},\"Name\":\"listings.property_type\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"room_type\"},\"Name\":\"listings.room_type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"square_feet\"}},\"Function\":0},\"Name\":\"Sum(listings.square_feet)\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"space\"},\"Name\":\"listings.space\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"Occupancy\"},\"Name\":\"listings.Occupancy\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"l\"}},\"Property\":\"accommodates\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"keyDrivers\":[{\"properties\":{\"targetValue\":{\"expr\":{\"Literal\":{\"Value\":\"'''292 - 365 days'''\"}}},\"selectedAnalysis\":{\"expr\":{\"Literal\":{\"Value\":\"'keyInfluencers'\"}}},\"selectedNumericAnalysis\":{\"expr\":{\"Literal\":{\"Value\":\"'Categorical'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 720.64,
+          "width": 1269.76,
+          "x": 10.24,
+          "y": 0.00,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectionebed3bb72971fc2666b9",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"349b9cf6268927bceb5c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.765721331689273,\"y\":0,\"z\":0,\"width\":780.3699136868064,\"height\":485.62268803945744}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"occupancy.date\",\"active\":true}],\"Y\":[{\"queryRef\":\"occupancy.% occupied\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"occupancy\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"date\"},\"Name\":\"occupancy.date\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"% occupied\"},\"Name\":\"occupancy.% occupied\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"anomalyDetection\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transform\":{\"algorithm\":\"SampleAndDetectAnomaly\",\"parameters\":[{\"Literal\":{\"Value\":\"1D\"},\"Name\":\"Sensitivity\"}]},\"explainBy\":{\"exprs\":[{\"expr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"occupancy\"}},\"Property\":\"available\"}}},{\"expr\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"occupancy\"}},\"Property\":\"price\"}}}],\"kind\":\"ExprList\"},\"displayName\":{\"expr\":{\"Literal\":{\"Value\":\"'Find anomalies 1'\"}}},\"markerShape\":{\"expr\":{\"Literal\":{\"Value\":\"'droplet'\"}}},\"markerShapeSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}},\"selector\":{\"metadata\":\"occupancy.% occupied\",\"id\":\"1\"}}]}}}",
+          "filters": "[]",
+          "height": 485.62,
+          "width": 780.37,
+          "x": 9.77,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "Electric"
+}

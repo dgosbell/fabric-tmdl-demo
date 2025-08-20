@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-AU
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.146.705.0 (25.08)+b71502aff0a01340c88f384884ef42771068f115
+
+annotation PBI_QueryOrder = ["FactInternetSales","FactResellerSales","DimCurrency","DimCustomer","DimDate","DimProduct","DimPromotion","DimSalesTerritory","DimEmployee","DimReseller","DimProductCategory","DimProductSubcategory","DimGeography"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
+
+ref table FactInternetSales
+ref table FactResellerSales
+ref table DimCurrency
+ref table DimCustomer
+ref table DimDate
+ref table DimProduct
+ref table DimPromotion
+ref table DimSalesTerritory
+ref table DimEmployee
+ref table DimReseller
+ref table DimProductCategory
+ref table DimProductSubcategory
+ref table DimGeography
+
+ref cultureInfo en-US
+

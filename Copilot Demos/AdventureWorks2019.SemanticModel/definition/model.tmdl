@@ -14,6 +14,8 @@ annotation PBI_QueryOrder = ["FactInternetSales","FactResellerSales","DimCurrenc
 
 annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
 
+annotation __TEdtr = 1
+
 ref table FactInternetSales
 ref table FactResellerSales
 ref table DimCurrency
@@ -27,6 +29,11 @@ ref table DimReseller
 ref table DimProductCategory
 ref table DimProductSubcategory
 ref table DimGeography
+
+ref role 'Australia Sales'
+
+ref perspective Reseller
+ref perspective Internet
 
 ref cultureInfo en-US
 

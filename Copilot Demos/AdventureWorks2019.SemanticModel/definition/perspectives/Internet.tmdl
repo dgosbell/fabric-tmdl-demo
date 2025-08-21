@@ -1,0 +1,340 @@
+perspective Internet
+
+	perspectiveTable FactInternetSales
+
+		perspectiveMeasure 'Internet Sales Amount'
+
+		perspectiveMeasure 'Internet Tax Amount'
+
+		perspectiveMeasure 'Internet Total Cost'
+
+		perspectiveMeasure 'Internet Margin'
+
+		perspectiveColumn ProductKey
+
+		perspectiveColumn OrderDateKey
+
+		perspectiveColumn DueDateKey
+
+		perspectiveColumn ShipDateKey
+
+		perspectiveColumn CustomerKey
+
+		perspectiveColumn PromotionKey
+
+		perspectiveColumn CurrencyKey
+
+		perspectiveColumn SalesTerritoryKey
+
+		perspectiveColumn SalesOrderNumber
+
+		perspectiveColumn SalesOrderLineNumber
+
+		perspectiveColumn RevisionNumber
+
+		perspectiveColumn OrderQuantity
+
+		perspectiveColumn UnitPrice
+
+		perspectiveColumn ExtendedAmount
+
+		perspectiveColumn UnitPriceDiscountPct
+
+		perspectiveColumn DiscountAmount
+
+		perspectiveColumn ProductStandardCost
+
+		perspectiveColumn TotalProductCost
+
+		perspectiveColumn SalesAmount
+
+		perspectiveColumn TaxAmt
+
+		perspectiveColumn Freight
+
+		perspectiveColumn CarrierTrackingNumber
+
+		perspectiveColumn CustomerPONumber
+
+		perspectiveColumn OrderDate
+
+		perspectiveColumn DueDate
+
+		perspectiveColumn ShipDate
+
+	perspectiveTable DimDate
+
+		perspectiveColumn DateKey
+
+		perspectiveColumn FullDateAlternateKey
+
+		perspectiveColumn DayNumberOfWeek
+
+		perspectiveColumn EnglishDayNameOfWeek
+
+		perspectiveColumn SpanishDayNameOfWeek
+
+		perspectiveColumn FrenchDayNameOfWeek
+
+		perspectiveColumn DayNumberOfMonth
+
+		perspectiveColumn DayNumberOfYear
+
+		perspectiveColumn WeekNumberOfYear
+
+		perspectiveColumn EnglishMonthName
+
+		perspectiveColumn SpanishMonthName
+
+		perspectiveColumn FrenchMonthName
+
+		perspectiveColumn MonthNumberOfYear
+
+		perspectiveColumn CalendarQuarter
+
+		perspectiveColumn CalendarYear
+
+		perspectiveColumn CalendarSemester
+
+		perspectiveColumn FiscalQuarter
+
+		perspectiveColumn FiscalYear
+
+		perspectiveColumn FiscalSemester
+
+	perspectiveTable DimSalesTerritory
+
+		perspectiveColumn SalesTerritoryKey
+
+		perspectiveColumn SalesTerritoryAlternateKey
+
+		perspectiveColumn SalesTerritoryRegion
+
+		perspectiveColumn SalesTerritoryCountry
+
+		perspectiveColumn SalesTerritoryGroup
+
+	perspectiveTable DimProduct
+
+		perspectiveColumn ProductKey
+
+		perspectiveColumn ProductAlternateKey
+
+		perspectiveColumn ProductSubcategoryKey
+
+		perspectiveColumn WeightUnitMeasureCode
+
+		perspectiveColumn SizeUnitMeasureCode
+
+		perspectiveColumn EnglishProductName
+
+		perspectiveColumn SpanishProductName
+
+		perspectiveColumn FrenchProductName
+
+		perspectiveColumn StandardCost
+
+		perspectiveColumn FinishedGoodsFlag
+
+		perspectiveColumn Color
+
+		perspectiveColumn SafetyStockLevel
+
+		perspectiveColumn ReorderPoint
+
+		perspectiveColumn ListPrice
+
+		perspectiveColumn Size
+
+		perspectiveColumn SizeRange
+
+		perspectiveColumn Weight
+
+		perspectiveColumn DaysToManufacture
+
+		perspectiveColumn ProductLine
+
+		perspectiveColumn DealerPrice
+
+		perspectiveColumn Class
+
+		perspectiveColumn Style
+
+		perspectiveColumn ModelName
+
+		perspectiveColumn EnglishDescription
+
+		perspectiveColumn FrenchDescription
+
+		perspectiveColumn ChineseDescription
+
+		perspectiveColumn ArabicDescription
+
+		perspectiveColumn HebrewDescription
+
+		perspectiveColumn ThaiDescription
+
+		perspectiveColumn GermanDescription
+
+		perspectiveColumn JapaneseDescription
+
+		perspectiveColumn TurkishDescription
+
+		perspectiveColumn StartDate
+
+		perspectiveColumn EndDate
+
+		perspectiveColumn Status
+
+	perspectiveTable DimProductCategory
+
+		perspectiveColumn ProductCategoryKey
+
+		perspectiveColumn ProductCategoryAlternateKey
+
+		perspectiveColumn EnglishProductCategoryName
+
+		perspectiveColumn SpanishProductCategoryName
+
+		perspectiveColumn FrenchProductCategoryName
+
+	perspectiveTable DimProductSubcategory
+
+		perspectiveColumn ProductSubcategoryKey
+
+		perspectiveColumn ProductSubcategoryAlternateKey
+
+		perspectiveColumn EnglishProductSubcategoryName
+
+		perspectiveColumn SpanishProductSubcategoryName
+
+		perspectiveColumn FrenchProductSubcategoryName
+
+		perspectiveColumn ProductCategoryKey
+
+	perspectiveTable DimCustomer
+
+		perspectiveColumn CustomerKey
+
+		perspectiveColumn GeographyKey
+
+		perspectiveColumn CustomerAlternateKey
+
+		perspectiveColumn Title
+
+		perspectiveColumn FirstName
+
+		perspectiveColumn MiddleName
+
+		perspectiveColumn LastName
+
+		perspectiveColumn NameStyle
+
+		perspectiveColumn BirthDate
+
+		perspectiveColumn MaritalStatus
+
+		perspectiveColumn Suffix
+
+		perspectiveColumn Gender
+
+		perspectiveColumn EmailAddress
+
+		perspectiveColumn YearlyIncome
+
+		perspectiveColumn TotalChildren
+
+		perspectiveColumn NumberChildrenAtHome
+
+		perspectiveColumn EnglishEducation
+
+		perspectiveColumn SpanishEducation
+
+		perspectiveColumn FrenchEducation
+
+		perspectiveColumn EnglishOccupation
+
+		perspectiveColumn SpanishOccupation
+
+		perspectiveColumn FrenchOccupation
+
+		perspectiveColumn HouseOwnerFlag
+
+		perspectiveColumn NumberCarsOwned
+
+		perspectiveColumn AddressLine1
+
+		perspectiveColumn AddressLine2
+
+		perspectiveColumn Phone
+
+		perspectiveColumn DateFirstPurchase
+
+		perspectiveColumn CommuteDistance
+
+	perspectiveTable DimCurrency
+
+		perspectiveColumn CurrencyKey
+
+		perspectiveColumn CurrencyAlternateKey
+
+		perspectiveColumn CurrencyName
+
+	perspectiveTable DimPromotion
+
+		perspectiveColumn PromotionKey
+
+		perspectiveColumn PromotionAlternateKey
+
+		perspectiveColumn EnglishPromotionName
+
+		perspectiveColumn SpanishPromotionName
+
+		perspectiveColumn FrenchPromotionName
+
+		perspectiveColumn DiscountPct
+
+		perspectiveColumn EnglishPromotionType
+
+		perspectiveColumn SpanishPromotionType
+
+		perspectiveColumn FrenchPromotionType
+
+		perspectiveColumn EnglishPromotionCategory
+
+		perspectiveColumn SpanishPromotionCategory
+
+		perspectiveColumn FrenchPromotionCategory
+
+		perspectiveColumn StartDate
+
+		perspectiveColumn EndDate
+
+		perspectiveColumn MinQty
+
+		perspectiveColumn MaxQty
+
+	perspectiveTable DimGeography
+
+		perspectiveColumn GeographyKey
+
+		perspectiveColumn City
+
+		perspectiveColumn StateProvinceCode
+
+		perspectiveColumn StateProvinceName
+
+		perspectiveColumn CountryRegionCode
+
+		perspectiveColumn EnglishCountryRegionName
+
+		perspectiveColumn SpanishCountryRegionName
+
+		perspectiveColumn FrenchCountryRegionName
+
+		perspectiveColumn PostalCode
+
+		perspectiveColumn SalesTerritoryKey
+
+		perspectiveColumn IpAddressLocator
+

@@ -1,0 +1,7 @@
+role 'Australia Sales'
+	modelPermission: read
+
+	tablePermission DimSalesTerritory = [SalesTerritoryCountry] == "Australia"
+
+	annotation PBI_Id = dce64e7087214116b7bc447dc5c21260
+

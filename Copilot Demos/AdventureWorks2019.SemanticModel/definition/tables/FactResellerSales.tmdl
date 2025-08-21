@@ -1,6 +1,12 @@
 table FactResellerSales
 	lineageTag: d2c29b04-fa19-4f02-bec4-eb35b169f034
 
+	measure 'Reseller Sales Amount' = SUM(FactResellerSales[SalesAmount])
+		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		lineageTag: 69b0ac5a-1134-4b58-8129-42c142d2fd50
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
 	column ProductKey
 		dataType: int64
 		formatString: 0

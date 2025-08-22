@@ -13,7 +13,7 @@ annotation PBIDesktopVersion = 2.147.7768.4 (Main)+1de83c1927f5084e1ddff9c9939f8
 
 annotation PBI_QueryOrder = ["FactInternetSales","FactResellerSales","DimCurrency","DimCustomer","DimDate","DimProduct","DimPromotion","DimSalesTerritory","DimEmployee","DimReseller","DimProductCategory","DimProductSubcategory","DimGeography"]
 
-annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode","WebModelingEdit"]
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode","WebModelingEdit","TMDL-Extension"]
 
 annotation __TEdtr = 1
 

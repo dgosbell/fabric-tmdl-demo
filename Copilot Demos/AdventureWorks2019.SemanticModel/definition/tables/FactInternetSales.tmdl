@@ -32,6 +32,10 @@ table FactInternetSales
 	measure Measure1 = 1
 		formatString: 0
 		lineageTag: 1a056722-a7d0-42c6-8ec8-3a78e0e44e5c
+		
+	measure Measure2 = 2
+		formatString: 0
+		
 
 	column ProductKey
 		dataType: int64

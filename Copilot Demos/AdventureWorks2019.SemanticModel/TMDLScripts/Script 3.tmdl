@@ -1,0 +1,52 @@
+createOrReplace
+
+	ref table DimCustomer
+
+		measure 'Avg Income' = AVERAGE(DimCustomer[YearlyIncome])
+			formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+			lineageTag: 65a9060d-9b04-47b4-91e1-389a0ed031ef
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+	ref table FactInternetSales
+
+		measure '# Customers' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+			formatString: 0
+			lineageTag: 3d622d7e-af22-48ee-a664-8e9e6e83d27c
+
+		measure '# Customers 2' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+			formatString: 0
+			lineageTag: 5c944c40-6934-4ebc-a156-f8c40705a9ce
+
+		measure 'Internet Margin' = [Internet Sales Amount] - FactInternetSales[Internet Total Cost]
+			formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+			lineageTag: 1399ba14-32c5-40fc-83f5-8c3701d92838
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+		measure 'Internet Sales Amount' = SUM(FactInternetSales[SalesAmount])
+			formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+			lineageTag: caab5c0c-d852-401d-b670-f257eb36ef94
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+		measure 'Internet Tax Amount' = sum('FactInternetSales'[TaxAmt])
+			formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+			lineageTag: e81abeee-5400-4add-b5d6-248f3a014359
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+		measure 'Internet Total Cost' = SUMX( FactInternetSales, FactInternetSales[TotalProductCost] * FactInternetSales[OrderQuantity])
+			formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+			lineageTag: 7315f1f2-329e-4d2a-bd70-38431ff9f154
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+	ref table FactResellerSales
+
+		measure 'Reseller Sales Amount' = SUM(FactResellerSales[SalesAmount])
+			formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+			lineageTag: 69b0ac5a-1134-4b58-8129-42c142d2fd50
+
+			annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+

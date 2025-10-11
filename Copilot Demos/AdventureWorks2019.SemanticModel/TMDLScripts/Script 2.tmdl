@@ -1,0 +1,3119 @@
+createOrReplace
+
+	model Model
+		culture: en-US
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		discourageImplicitMeasures
+		sourceQueryCulture: en-AU
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table FactInternetSales
+			lineageTag: c96d0d90-1cb6-45be-afa8-45c5133f4cd9
+
+			measure 'Internet Sales Amount' = SUM(FactInternetSales[SalesAmount])
+				formatString: \$#,0.000;-\$#,0.000;\$#,0.000
+				lineageTag: caab5c0c-d852-401d-b670-f257eb36ef94
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			measure 'Internet Tax Amount' = sum('FactInternetSales'[TaxAmt])
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: e81abeee-5400-4add-b5d6-248f3a014359
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			measure 'Internet Total Cost' = SUMX( FactInternetSales, FactInternetSales[TotalProductCost] * FactInternetSales[OrderQuantity])
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 7315f1f2-329e-4d2a-bd70-38431ff9f154
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			measure 'Internet Margin' = [Internet Sales Amount] - FactInternetSales[Internet Total Cost]
+				formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+				lineageTag: 1399ba14-32c5-40fc-83f5-8c3701d92838
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			measure '# Customers' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+				formatString: 0
+				lineageTag: 3d622d7e-af22-48ee-a664-8e9e6e83d27c
+			
+			/// my customer #
+			measure '# Customers 2' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+				formatString: 0
+				lineageTag: 5c944c40-6934-4ebc-a156-f8c40705a9ce
+
+			column 'Product Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 3814d1d1-d6e3-4515-b0d2-320918766124
+				summarizeBy: none
+				sourceColumn: ProductKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 18507abf-e1bb-46f7-83a6-71e2dd46831c
+				summarizeBy: count
+				sourceColumn: OrderDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Due Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 44bbf0c8-78f5-49dc-bcb0-2471ad636eb8
+				summarizeBy: none
+				sourceColumn: DueDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Ship Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 2be3165e-536a-4d96-914f-df65ec67c833
+				summarizeBy: count
+				sourceColumn: ShipDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 574f798c-6fd3-4cb1-8d55-a2ea52a93188
+				summarizeBy: none
+				sourceColumn: CustomerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Promotion Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 4c38d466-2ab6-4c51-91cb-c271c431c3a8
+				summarizeBy: none
+				sourceColumn: PromotionKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Currency Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: d8912b23-4b09-431a-a6f5-8ffa3b30b09a
+				summarizeBy: none
+				sourceColumn: CurrencyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 0a215bf6-cb99-4d52-a46c-63f3dd859ebc
+				summarizeBy: none
+				sourceColumn: SalesTerritoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Order Number'
+				dataType: string
+				lineageTag: e7796ec5-c01e-4f97-a067-292d1ab80975
+				summarizeBy: none
+				sourceColumn: SalesOrderNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Order Line Number'
+				dataType: int64
+				formatString: 0
+				lineageTag: adf2e7b8-58dd-4bc0-82ae-53a76460402a
+				summarizeBy: sum
+				sourceColumn: SalesOrderLineNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Revision Number'
+				dataType: int64
+				formatString: 0
+				lineageTag: 41d5fa5e-9971-4bc0-8e8e-ecd472e7e65b
+				summarizeBy: sum
+				sourceColumn: RevisionNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Quantity'
+				dataType: int64
+				formatString: 0
+				lineageTag: 8f99c5d8-b10b-4b8b-a66f-b8ce33544212
+				summarizeBy: sum
+				sourceColumn: OrderQuantity
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Unit Price'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 52e22646-6e7f-419e-88ea-6729ebe8c79a
+				summarizeBy: sum
+				sourceColumn: UnitPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Extended Amount'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 2be81ef9-71e4-4f59-971e-e28d38dad08b
+				summarizeBy: sum
+				sourceColumn: ExtendedAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Unit Price Discount Pct'
+				dataType: double
+				lineageTag: ea5ceb4f-5650-48ce-a5e6-7c80806f553a
+				summarizeBy: sum
+				sourceColumn: UnitPriceDiscountPct
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Discount Amount'
+				dataType: double
+				lineageTag: 2fb1f194-1393-4e65-bd54-8860244f0697
+				summarizeBy: sum
+				sourceColumn: DiscountAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Product Standard Cost'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 29ea6fad-ccd2-433e-9f02-bfcfc06628d4
+				summarizeBy: sum
+				sourceColumn: ProductStandardCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Total Product Cost'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 823bfa6b-5355-4208-a4b7-9406d4fc1fdf
+				summarizeBy: sum
+				sourceColumn: TotalProductCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Sales Amount'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 4c476bf3-6671-44ad-80de-b573907ff80b
+				summarizeBy: sum
+				sourceColumn: SalesAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Tax Amt'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: f68f0a67-1d46-416c-8547-280c4b0c5d3a
+				summarizeBy: sum
+				sourceColumn: TaxAmt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Freight'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 436097c5-d892-47e1-b6b8-26b4e1909400
+				summarizeBy: sum
+				sourceColumn: Freight
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Carrier Tracking Number'
+				dataType: string
+				lineageTag: 8aa93aee-641b-47d2-bd3f-09c3676ed7b2
+				summarizeBy: none
+				sourceColumn: CarrierTrackingNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer PONumber'
+				dataType: string
+				lineageTag: 648d1e8f-a045-44c9-b441-e34bfab34305
+				summarizeBy: none
+				sourceColumn: CustomerPONumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 0f2d07f9-cb61-4648-9abd-0e50ee0ebb9c
+				summarizeBy: none
+				sourceColumn: OrderDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Due Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 66a074f8-b1eb-45e4-aaa9-51190b6db4e2
+				summarizeBy: none
+				sourceColumn: DueDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Ship Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: d48f7566-007f-4e95-b62a-e8c3931a39ae
+				summarizeBy: none
+				sourceColumn: ShipDate
+
+				annotation SummarizationSetBy = Automatic
+
+			partition FactInternetSales = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_FactInternetSales = Source{[Schema="dbo",Item="FactInternetSales"]}[Data]
+						in
+						    dbo_FactInternetSales
+
+			annotation PBI_ResultType = Table
+
+		table FactResellerSales
+			lineageTag: d2c29b04-fa19-4f02-bec4-eb35b169f034
+
+			measure 'Reseller Sales Amount' = SUM(FactResellerSales[SalesAmount])
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 69b0ac5a-1134-4b58-8129-42c142d2fd50
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Product Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 98e37986-0f0d-4ef3-b9ca-400e49218c25
+				summarizeBy: none
+				sourceColumn: ProductKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 64d2c17d-8cac-4556-acc4-64ec329132b9
+				summarizeBy: count
+				sourceColumn: OrderDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Due Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: db1419f7-8fca-49b0-80a2-065e4fc01b89
+				summarizeBy: none
+				sourceColumn: DueDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Ship Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 2561d1e9-4a53-4f59-a527-4d159c6fd5c8
+				summarizeBy: count
+				sourceColumn: ShipDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Reseller Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: a6a0fb5f-f9f9-48f3-872b-2e13e7494590
+				summarizeBy: none
+				sourceColumn: ResellerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Employee Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: ef60db9b-9b9d-4921-a7c5-1b7542bb0ced
+				summarizeBy: none
+				sourceColumn: EmployeeKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Promotion Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: ec94e5b3-770f-4065-82d5-d2046c84cf7a
+				summarizeBy: none
+				sourceColumn: PromotionKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Currency Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 3ca4984f-e4f3-4386-9848-74338d05db1a
+				summarizeBy: none
+				sourceColumn: CurrencyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 0071a78e-b7f4-4396-9979-a3529b1ce390
+				summarizeBy: none
+				sourceColumn: SalesTerritoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Order Number'
+				dataType: string
+				lineageTag: 5cb71c4a-c8bd-4367-9133-5d51dc523092
+				summarizeBy: none
+				sourceColumn: SalesOrderNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Order Line Number'
+				dataType: int64
+				formatString: 0
+				lineageTag: 99f6b2cb-c503-4ab3-81d4-581ac833bd4b
+				summarizeBy: sum
+				sourceColumn: SalesOrderLineNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Revision Number'
+				dataType: int64
+				formatString: 0
+				lineageTag: f3078545-430b-4a47-bcb9-0c7177e1b24d
+				summarizeBy: sum
+				sourceColumn: RevisionNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Quantity'
+				dataType: int64
+				formatString: 0
+				lineageTag: 1b06c6ab-331f-4c26-afe0-b0cd4d68e9e3
+				summarizeBy: sum
+				sourceColumn: OrderQuantity
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Unit Price'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 71daf3a2-ceb6-4ac2-b9a7-bc34d1e0a98b
+				summarizeBy: sum
+				sourceColumn: UnitPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Extended Amount'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: b955b950-8bc2-4a3d-b7bf-32daa782f8ff
+				summarizeBy: sum
+				sourceColumn: ExtendedAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Unit Price Discount Pct'
+				dataType: double
+				lineageTag: 7a12c41c-cbcf-44ab-b349-75529f5ee4fb
+				summarizeBy: sum
+				sourceColumn: UnitPriceDiscountPct
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Discount Amount'
+				dataType: double
+				lineageTag: a75e8608-a90c-40d4-9657-79afc2ba7b2e
+				summarizeBy: sum
+				sourceColumn: DiscountAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Product Standard Cost'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 02b36475-944b-4673-a18a-d7f4450ca130
+				summarizeBy: sum
+				sourceColumn: ProductStandardCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Total Product Cost'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: c19fb7e3-36e9-4da7-8707-61c8bc359c94
+				summarizeBy: sum
+				sourceColumn: TotalProductCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Sales Amount'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: c596de7d-16c7-4b4d-9432-bff9741723d7
+				summarizeBy: sum
+				sourceColumn: SalesAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Tax Amt'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: f2969e19-072f-48b4-a637-dd7f2c48e817
+				summarizeBy: sum
+				sourceColumn: TaxAmt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Freight'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: f3e134aa-da74-4c18-bfd8-9a43bd69e1d6
+				summarizeBy: sum
+				sourceColumn: Freight
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Carrier Tracking Number'
+				dataType: string
+				lineageTag: c28954b8-4f28-469d-ac88-7588cce94a10
+				summarizeBy: none
+				sourceColumn: CarrierTrackingNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer PONumber'
+				dataType: string
+				lineageTag: 168b65f4-711f-4e54-b08c-ffb22b0e4877
+				summarizeBy: none
+				sourceColumn: CustomerPONumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 6b47158e-7e2b-41aa-b763-f1c6d4b260ab
+				summarizeBy: none
+				sourceColumn: OrderDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Due Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: ef7a4e4f-7d20-48b2-a2e8-a84378a0c882
+				summarizeBy: none
+				sourceColumn: DueDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Ship Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: db585718-41c5-4f9b-8a58-002380cd09d6
+				summarizeBy: none
+				sourceColumn: ShipDate
+
+				annotation SummarizationSetBy = Automatic
+
+			partition FactResellerSales = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_FactResellerSales = Source{[Schema="dbo",Item="FactResellerSales"]}[Data]
+						in
+						    dbo_FactResellerSales
+
+			annotation PBI_ResultType = Table
+
+		table DimCurrency
+			lineageTag: c2d446a3-d063-4897-913e-0ba7e7132d03
+
+			column 'Currency Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 8535d836-6332-460f-9531-82d3febfe1cf
+				summarizeBy: none
+				sourceColumn: CurrencyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Currency Alternate Key'
+				dataType: string
+				lineageTag: 47819ee6-0498-4a79-8bb0-397e155b3a00
+				summarizeBy: none
+				sourceColumn: CurrencyAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Currency Name'
+				dataType: string
+				lineageTag: e97048c8-9c3d-4a29-b4bf-edbbe4e2c55d
+				summarizeBy: none
+				sourceColumn: CurrencyName
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimCurrency = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimCurrency = Source{[Schema="dbo",Item="DimCurrency"]}[Data]
+						in
+						    dbo_DimCurrency
+
+			annotation PBI_ResultType = Table
+
+		table DimCustomer
+			lineageTag: 384a5c98-6707-4403-9cc8-9d0f39670a68
+
+			measure 'Avg Income' = AVERAGE(DimCustomer[YearlyIncome])
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 65a9060d-9b04-47b4-91e1-389a0ed031ef
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Customer Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 92818eab-f59b-4560-8027-a1b37c650e8b
+				summarizeBy: none
+				sourceColumn: CustomerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Geography Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: b47ba22f-265f-4c9b-9b23-3f6fa3b04b43
+				summarizeBy: none
+				sourceColumn: GeographyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Customer Alternate Key'
+				dataType: string
+				lineageTag: 9e6f1884-19ba-4d27-97ff-5b83c40ce4aa
+				summarizeBy: none
+				sourceColumn: CustomerAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Title'
+				dataType: string
+				lineageTag: 8394785c-be80-4f7a-b3c9-9c2e0dcebf64
+				summarizeBy: none
+				sourceColumn: Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'First Name'
+				dataType: string
+				lineageTag: efa89f2c-9abc-4640-80d1-ae2baeceb210
+				summarizeBy: none
+				sourceColumn: FirstName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Middle Name'
+				dataType: string
+				lineageTag: 15490920-2248-4afa-b1f5-e500b8b88eef
+				summarizeBy: none
+				sourceColumn: MiddleName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Last Name'
+				dataType: string
+				lineageTag: d0792ad1-e50a-4513-9307-dbec168c0b9f
+				summarizeBy: none
+				sourceColumn: LastName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Name Style'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 0de524ed-9f0f-48ca-971e-00568f71b115
+				summarizeBy: none
+				sourceColumn: NameStyle
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Birth Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 8b58d775-9659-46f0-815e-0ebe570b976e
+				summarizeBy: none
+				sourceColumn: BirthDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Marital Status'
+				dataType: string
+				lineageTag: 166ff803-07bd-4ddf-bd7e-11e3ae795461
+				summarizeBy: none
+				sourceColumn: MaritalStatus
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Suffix'
+				dataType: string
+				lineageTag: 4cb3a82e-d7cf-494f-b284-d3edf2a06479
+				summarizeBy: none
+				sourceColumn: Suffix
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Gender'
+				dataType: string
+				lineageTag: f319381e-eae8-4b38-8a21-3b4af10eed1d
+				summarizeBy: none
+				sourceColumn: Gender
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Email Address'
+				dataType: string
+				lineageTag: 40f0f8c1-9ca3-4dea-ac69-6c738f371c5b
+				summarizeBy: none
+				sourceColumn: EmailAddress
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Yearly Income'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: d658bd07-a3fe-48a0-8c53-416c9bb906ac
+				summarizeBy: sum
+				sourceColumn: YearlyIncome
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Total Children'
+				dataType: int64
+				formatString: 0
+				lineageTag: e59f54b6-0f4f-4962-82c2-1662ae77d378
+				summarizeBy: sum
+				sourceColumn: TotalChildren
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Number Children At Home'
+				dataType: int64
+				formatString: 0
+				lineageTag: 1e5b8470-bc56-4f98-a75f-c594467cf42e
+				summarizeBy: sum
+				sourceColumn: NumberChildrenAtHome
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Education'
+				dataType: string
+				lineageTag: c3c5979c-f2b2-4745-8868-30d8335ff7da
+				summarizeBy: none
+				sourceColumn: EnglishEducation
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Education'
+				dataType: string
+				lineageTag: 26732d1c-e2b0-4546-bb76-3192e826ddb7
+				summarizeBy: none
+				sourceColumn: SpanishEducation
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Education'
+				dataType: string
+				lineageTag: 432e8136-0607-4142-8c29-e4f590d27342
+				summarizeBy: none
+				sourceColumn: FrenchEducation
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Occupation'
+				dataType: string
+				lineageTag: 75cab8e3-19e9-45ca-9ba9-a869ae316876
+				summarizeBy: none
+				sourceColumn: EnglishOccupation
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Occupation'
+				dataType: string
+				lineageTag: b4d4cea8-7eba-4e87-850e-ca76039115b5
+				summarizeBy: none
+				sourceColumn: SpanishOccupation
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Occupation'
+				dataType: string
+				lineageTag: 0a86528d-812e-47ae-8888-df205f4fd6a2
+				summarizeBy: none
+				sourceColumn: FrenchOccupation
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'House Owner Flag'
+				dataType: string
+				lineageTag: b0d75e16-4c5a-4940-b99b-a3d92d2f1ebb
+				summarizeBy: none
+				sourceColumn: HouseOwnerFlag
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Number Cars Owned'
+				dataType: int64
+				formatString: 0
+				lineageTag: b43aeaad-f959-4ba4-a21d-fefcc21665bb
+				summarizeBy: sum
+				sourceColumn: NumberCarsOwned
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Address Line1'
+				dataType: string
+				lineageTag: 098ba997-0ccc-42a0-8128-f8d92ff689c8
+				summarizeBy: none
+				sourceColumn: AddressLine1
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Address Line2'
+				dataType: string
+				lineageTag: e98db637-aec5-4dd8-aa60-b919a2f935da
+				summarizeBy: none
+				sourceColumn: AddressLine2
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Phone'
+				dataType: string
+				lineageTag: 9f4da3e9-dd9c-4f0a-98ef-65b65a240602
+				summarizeBy: none
+				sourceColumn: Phone
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Date First Purchase'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 54751766-8dea-4cbe-9aed-7ec184e87362
+				summarizeBy: none
+				sourceColumn: DateFirstPurchase
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Commute Distance'
+				dataType: string
+				lineageTag: 311a1621-ad18-4337-92aa-c2799b299582
+				summarizeBy: none
+				sourceColumn: CommuteDistance
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimCustomer = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimCustomer = Source{[Schema="dbo",Item="DimCustomer"]}[Data]
+						in
+						    dbo_DimCustomer
+
+			annotation PBI_ResultType = Table
+
+		table DimDate
+			lineageTag: bd852e2b-6436-4774-8540-0cfc4ada432c
+
+			column 'Date Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: e072bdde-2fb9-4439-bab0-01535495019e
+				summarizeBy: none
+				sourceColumn: DateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Full Date Alternate Key'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: ca78f86d-efa8-4222-b369-5ce428dd5434
+				summarizeBy: none
+				sourceColumn: FullDateAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Day Number Of Week'
+				dataType: int64
+				formatString: 0
+				lineageTag: e29272c2-e6b9-46a8-9211-76ba586cd1d4
+				summarizeBy: sum
+				sourceColumn: DayNumberOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Day Name Of Week'
+				dataType: string
+				lineageTag: 95353817-41e2-42b1-a9b5-e1986872ad14
+				summarizeBy: none
+				sourceColumn: EnglishDayNameOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Day Name Of Week'
+				dataType: string
+				lineageTag: 41e6f1c1-e4f4-45a7-8ad2-aa329a350d28
+				summarizeBy: none
+				sourceColumn: SpanishDayNameOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Day Name Of Week'
+				dataType: string
+				lineageTag: 53307c5c-a953-40f4-8ac0-728fbcc06326
+				summarizeBy: none
+				sourceColumn: FrenchDayNameOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Day Number Of Month'
+				dataType: int64
+				formatString: 0
+				lineageTag: c3f3b692-89d4-4866-bbb3-a01ae0bc70a7
+				summarizeBy: sum
+				sourceColumn: DayNumberOfMonth
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Day Number Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: ba8c0557-2ee7-46a2-a650-63c4fd4a0a45
+				summarizeBy: sum
+				sourceColumn: DayNumberOfYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Week Number Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 8521df97-583e-456d-9710-da9aed1e85bb
+				summarizeBy: sum
+				sourceColumn: WeekNumberOfYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Month Name'
+				dataType: string
+				lineageTag: 8901b43b-ab7d-4c87-b735-831869eccc6c
+				summarizeBy: none
+				sourceColumn: EnglishMonthName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Month Name'
+				dataType: string
+				lineageTag: b01cc692-52e9-4369-abe2-dd3fe157bf3b
+				summarizeBy: none
+				sourceColumn: SpanishMonthName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Month Name'
+				dataType: string
+				lineageTag: 02b1df09-fcb0-4c3f-8a95-97f21980f9d8
+				summarizeBy: none
+				sourceColumn: FrenchMonthName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Month Number Of Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 87fb4830-a439-42ca-b614-65980edb7bb9
+				summarizeBy: sum
+				sourceColumn: MonthNumberOfYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Calendar Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: 0489d9f5-102d-4efc-8b52-46d5a14807fe
+				summarizeBy: sum
+				sourceColumn: CalendarQuarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Calendar Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: f5ba7d3e-d8f3-4106-b67d-655a171337ac
+				summarizeBy: sum
+				sourceColumn: CalendarYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Calendar Semester'
+				dataType: int64
+				formatString: 0
+				lineageTag: f20dde43-b36e-46a4-aac1-e8ef5db13664
+				summarizeBy: sum
+				sourceColumn: CalendarSemester
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Quarter'
+				dataType: int64
+				formatString: 0
+				lineageTag: 04151709-4568-4a38-b41a-ea22b60a1985
+				summarizeBy: sum
+				sourceColumn: FiscalQuarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 90da2b1f-a873-4a94-ae45-cb8d1c29a70f
+				summarizeBy: sum
+				sourceColumn: FiscalYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Fiscal Semester'
+				dataType: int64
+				formatString: 0
+				lineageTag: 4e4e3469-d2ed-4c47-970a-1f5c826d69bf
+				summarizeBy: sum
+				sourceColumn: FiscalSemester
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimDate = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimDate = Source{[Schema="dbo",Item="DimDate"]}[Data]
+						in
+						    dbo_DimDate
+
+			annotation PBI_ResultType = Table
+
+		table DimProduct
+			lineageTag: 0f7afcc0-e8fc-422a-9868-861dd02d8f57
+
+			column 'Product Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 752c4b1e-8071-41d1-9a5d-8bca608630ed
+				summarizeBy: none
+				sourceColumn: ProductKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Alternate Key'
+				dataType: string
+				lineageTag: b5296dc1-6eb0-4e14-bac3-006be1458cf0
+				summarizeBy: none
+				sourceColumn: ProductAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Subcategory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 9d877897-46d1-4d92-b498-b0f1e8f4e7b2
+				summarizeBy: none
+				sourceColumn: ProductSubcategoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Weight Unit Measure Code'
+				dataType: string
+				lineageTag: 49a2c53b-88a2-44b1-ad69-526f3158488b
+				summarizeBy: none
+				sourceColumn: WeightUnitMeasureCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Size Unit Measure Code'
+				dataType: string
+				lineageTag: 82beac57-296d-4562-8d8f-953a9413469f
+				summarizeBy: none
+				sourceColumn: SizeUnitMeasureCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Product Name'
+				dataType: string
+				lineageTag: 687ac358-ca96-4369-9649-685980815ed4
+				summarizeBy: none
+				sourceColumn: EnglishProductName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Product Name'
+				dataType: string
+				lineageTag: 8597dd4f-a1d0-46f5-8f22-a3a2e1e3d358
+				summarizeBy: none
+				sourceColumn: SpanishProductName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Product Name'
+				dataType: string
+				lineageTag: a83867e2-a778-4214-8241-06b09186e704
+				summarizeBy: none
+				sourceColumn: FrenchProductName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Standard Cost'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: c5a7640d-68cf-446c-8e78-0f8041e6d4c2
+				summarizeBy: sum
+				sourceColumn: StandardCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Finished Goods Flag'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: a9519b83-71b4-408c-a696-97180b6ff103
+				summarizeBy: none
+				sourceColumn: FinishedGoodsFlag
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Color'
+				dataType: string
+				lineageTag: b7ec59f9-0f2e-4595-a93f-58d89c50a353
+				summarizeBy: none
+				sourceColumn: Color
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Safety Stock Level'
+				dataType: int64
+				formatString: 0
+				lineageTag: 335c0e56-b8f2-423c-b146-6ff338c955ee
+				summarizeBy: sum
+				sourceColumn: SafetyStockLevel
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Reorder Point'
+				dataType: int64
+				formatString: 0
+				lineageTag: 7df000cb-b4aa-4b12-84fb-5d69be2416e8
+				summarizeBy: sum
+				sourceColumn: ReorderPoint
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'List Price'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: fc06df9a-fca6-49f0-b0cd-7d17c8bb1753
+				summarizeBy: sum
+				sourceColumn: ListPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Size'
+				dataType: string
+				lineageTag: 131a09b8-7801-455d-8e94-f950d431c1d4
+				summarizeBy: none
+				sourceColumn: Size
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Size Range'
+				dataType: string
+				lineageTag: a4162fb2-14ac-4c71-b982-5b71abb5d8a6
+				summarizeBy: none
+				sourceColumn: SizeRange
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Weight'
+				dataType: double
+				lineageTag: 1b361862-2f0b-4a2f-8e94-66afd1cc28b1
+				summarizeBy: sum
+				sourceColumn: Weight
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'Days To Manufacture'
+				dataType: int64
+				formatString: 0
+				lineageTag: 25c531b2-c101-4d1f-b0f0-8dd75a981198
+				summarizeBy: sum
+				sourceColumn: DaysToManufacture
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Line'
+				dataType: string
+				lineageTag: 79241641-1091-471b-802e-f6e4c8feee14
+				summarizeBy: none
+				sourceColumn: ProductLine
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Dealer Price'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 599575d1-8627-4e78-ba17-7c306ab1f136
+				summarizeBy: sum
+				sourceColumn: DealerPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Class'
+				dataType: string
+				lineageTag: f7c66d09-bda0-476d-a2ca-c7e20a043281
+				summarizeBy: none
+				sourceColumn: Class
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Style'
+				dataType: string
+				lineageTag: 53bb88b7-4c38-4cb9-aa55-a26eff9d7894
+				summarizeBy: none
+				sourceColumn: Style
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Model Name'
+				dataType: string
+				lineageTag: c476a4f8-3ba4-4827-bc63-9730b70df3e0
+				summarizeBy: none
+				sourceColumn: ModelName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Description'
+				dataType: string
+				lineageTag: bcccff3f-7128-48a4-979c-26081fdaecba
+				summarizeBy: none
+				sourceColumn: EnglishDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Description'
+				dataType: string
+				lineageTag: d79f7bc2-6b3e-4bb6-bb21-e7a09946c02a
+				summarizeBy: none
+				sourceColumn: FrenchDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Chinese Description'
+				dataType: string
+				lineageTag: b1333618-95ae-417f-895b-680dd62df71c
+				summarizeBy: none
+				sourceColumn: ChineseDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Arabic Description'
+				dataType: string
+				lineageTag: e789a0cd-5be9-45f8-861e-a0afdc9fc2d8
+				summarizeBy: none
+				sourceColumn: ArabicDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Hebrew Description'
+				dataType: string
+				lineageTag: b8df3034-c8c8-415c-a23b-dfe61afed1dc
+				summarizeBy: none
+				sourceColumn: HebrewDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Thai Description'
+				dataType: string
+				lineageTag: d516014c-535b-4346-bdec-08968e5e6b87
+				summarizeBy: none
+				sourceColumn: ThaiDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'German Description'
+				dataType: string
+				lineageTag: b7025124-6b6b-43e8-9345-8bd3351cb126
+				summarizeBy: none
+				sourceColumn: GermanDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Japanese Description'
+				dataType: string
+				lineageTag: 06241b9d-24cc-471c-ae28-4d1da1c66819
+				summarizeBy: none
+				sourceColumn: JapaneseDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Turkish Description'
+				dataType: string
+				lineageTag: 2efdcec5-b821-4983-9379-73f4d198fc53
+				summarizeBy: none
+				sourceColumn: TurkishDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Start Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: d38f5087-0423-4c12-9654-dcf820f129aa
+				summarizeBy: none
+				sourceColumn: StartDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'End Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 03021dc2-c683-41c5-854f-05a3d15d5eee
+				summarizeBy: none
+				sourceColumn: EndDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Status'
+				dataType: string
+				lineageTag: 5ffaed6e-d473-4661-a2db-27dadf3727ad
+				summarizeBy: none
+				sourceColumn: Status
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimProduct = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimProduct = Source{[Schema="dbo",Item="DimProduct"]}[Data]
+						in
+						    dbo_DimProduct
+
+			annotation PBI_ResultType = Table
+
+		table DimPromotion
+			lineageTag: 017d48f4-faa8-41f8-a4af-42764dade92a
+
+			column 'Promotion Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 6a23b500-59bf-479a-a002-bdd3742540a6
+				summarizeBy: none
+				sourceColumn: PromotionKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Promotion Alternate Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 28b1124e-9a00-43e2-8282-1698964553d9
+				summarizeBy: count
+				sourceColumn: PromotionAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Promotion Name'
+				dataType: string
+				lineageTag: 22d24d83-1bbb-450d-aa2b-90c91a33d659
+				summarizeBy: none
+				sourceColumn: EnglishPromotionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Promotion Name'
+				dataType: string
+				lineageTag: 2d0fc416-c562-44f7-8f25-3252d52a2fe4
+				summarizeBy: none
+				sourceColumn: SpanishPromotionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Promotion Name'
+				dataType: string
+				lineageTag: 709e84b2-ef77-4cf1-90d7-af15ef5bdba7
+				summarizeBy: none
+				sourceColumn: FrenchPromotionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Discount Pct'
+				dataType: double
+				lineageTag: c6155705-561a-49dd-9f90-38aa0b627d7c
+				summarizeBy: sum
+				sourceColumn: DiscountPct
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column 'English Promotion Type'
+				dataType: string
+				lineageTag: 7b500979-3545-4b6f-a743-be8adf7075bb
+				summarizeBy: none
+				sourceColumn: EnglishPromotionType
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Promotion Type'
+				dataType: string
+				lineageTag: b9342602-d157-499a-9651-998b9957f239
+				summarizeBy: none
+				sourceColumn: SpanishPromotionType
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Promotion Type'
+				dataType: string
+				lineageTag: 1d74fd19-9a87-47c8-929a-3d4a1fe044f5
+				summarizeBy: none
+				sourceColumn: FrenchPromotionType
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Promotion Category'
+				dataType: string
+				lineageTag: 0341c549-5c43-4bb2-a1b4-2448c36926e2
+				summarizeBy: none
+				sourceColumn: EnglishPromotionCategory
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Promotion Category'
+				dataType: string
+				lineageTag: bf1edec0-162e-4a07-bc55-a358517a7263
+				summarizeBy: none
+				sourceColumn: SpanishPromotionCategory
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Promotion Category'
+				dataType: string
+				lineageTag: c27eaa6b-384a-4008-8203-a00de102ba6b
+				summarizeBy: none
+				sourceColumn: FrenchPromotionCategory
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Start Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 29472841-285b-46ca-837a-d22df71a7c81
+				summarizeBy: none
+				sourceColumn: StartDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'End Date'
+				dataType: dateTime
+				formatString: General Date
+				lineageTag: 73bba8d7-7506-4090-869d-8bd8cfa5d76a
+				summarizeBy: none
+				sourceColumn: EndDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Min Qty'
+				dataType: int64
+				formatString: 0
+				lineageTag: 3fcdcf26-2071-4b0a-bb1c-aa24303a4016
+				summarizeBy: sum
+				sourceColumn: MinQty
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Max Qty'
+				dataType: int64
+				formatString: 0
+				lineageTag: a5af5993-dae8-449f-b189-cd0d56fe8002
+				summarizeBy: sum
+				sourceColumn: MaxQty
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimPromotion = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimPromotion = Source{[Schema="dbo",Item="DimPromotion"]}[Data]
+						in
+						    dbo_DimPromotion
+
+			annotation PBI_ResultType = Table
+
+		table DimSalesTerritory
+			lineageTag: aba20a7c-41ca-4d67-b299-292d4b4d1406
+
+			column 'Sales Territory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 3446e5fb-9c95-4ffa-aae4-276dedc1332c
+				summarizeBy: none
+				sourceColumn: SalesTerritoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Alternate Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 64c894a0-8686-4114-9d54-5cf39b24d30b
+				summarizeBy: count
+				sourceColumn: SalesTerritoryAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Region'
+				dataType: string
+				lineageTag: 104987c5-51f0-4642-8545-b6ccd07b0408
+				summarizeBy: none
+				sourceColumn: SalesTerritoryRegion
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Country'
+				dataType: string
+				lineageTag: 0271a119-002a-412e-9759-e6ec6b3f9d50
+				summarizeBy: none
+				sourceColumn: SalesTerritoryCountry
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Group'
+				dataType: string
+				lineageTag: 822938e4-2622-4d27-8e5a-af41dafdfc8c
+				summarizeBy: none
+				sourceColumn: SalesTerritoryGroup
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimSalesTerritory = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimSalesTerritory = Source{[Schema="dbo",Item="DimSalesTerritory"]}[Data]
+						in
+						    dbo_DimSalesTerritory
+
+			annotation PBI_ResultType = Table
+
+		table DimEmployee
+			lineageTag: ecdb4606-7b63-49f9-ba45-90db07a5de8a
+
+			column 'Employee Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 2b85ec24-80b5-4a02-9c25-93b209646c03
+				summarizeBy: none
+				sourceColumn: EmployeeKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Parent Employee Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 356bacaa-4051-4fbb-b27b-16a5b7af4ed4
+				summarizeBy: none
+				sourceColumn: ParentEmployeeKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Employee National IDAlternate Key'
+				dataType: string
+				lineageTag: a6b271d1-6f53-44c8-b911-2a70c349bd5d
+				summarizeBy: none
+				sourceColumn: EmployeeNationalIDAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Parent Employee National IDAlternate Key'
+				dataType: string
+				lineageTag: a28b6a6f-4dc1-438f-891d-e105214ce2b9
+				summarizeBy: none
+				sourceColumn: ParentEmployeeNationalIDAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: dd51e653-8412-4fc4-8ebb-1a8fbe8c6871
+				summarizeBy: none
+				sourceColumn: SalesTerritoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'First Name'
+				dataType: string
+				lineageTag: 90a2dd6a-ca3f-4662-8632-4a5d3eed8a87
+				summarizeBy: none
+				sourceColumn: FirstName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Last Name'
+				dataType: string
+				lineageTag: 31ea050f-be5f-4ce8-a06a-82fe1b7e61c9
+				summarizeBy: none
+				sourceColumn: LastName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Middle Name'
+				dataType: string
+				lineageTag: bce07c01-48fb-4d91-933e-ced1279d559d
+				summarizeBy: none
+				sourceColumn: MiddleName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Name Style'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 45213a69-bd5e-4fad-be6b-1a3963112d02
+				summarizeBy: none
+				sourceColumn: NameStyle
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Title'
+				dataType: string
+				lineageTag: 187efd65-6bbb-4137-9bfc-dd2b6c4a2273
+				summarizeBy: none
+				sourceColumn: Title
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Hire Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 34db2221-4820-4fd7-b38d-6bb49eadf774
+				summarizeBy: none
+				sourceColumn: HireDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Birth Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: a0a98caa-bd7a-4fd9-a01c-af46a56c6197
+				summarizeBy: none
+				sourceColumn: BirthDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Login ID'
+				dataType: string
+				lineageTag: eeb9e1b1-539a-4e06-9b7f-b6f4852ca809
+				summarizeBy: none
+				sourceColumn: LoginID
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Email Address'
+				dataType: string
+				lineageTag: 860fe68c-f3ff-4fbc-b309-897a9a940f14
+				summarizeBy: none
+				sourceColumn: EmailAddress
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Phone'
+				dataType: string
+				lineageTag: dc62fc81-e475-46e2-b76f-991c90d60689
+				summarizeBy: none
+				sourceColumn: Phone
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Marital Status'
+				dataType: string
+				lineageTag: c110a922-0953-4019-948f-f46d726ebc6c
+				summarizeBy: none
+				sourceColumn: MaritalStatus
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Emergency Contact Name'
+				dataType: string
+				lineageTag: a235a650-6784-4abb-8939-4ab99b723e8b
+				summarizeBy: none
+				sourceColumn: EmergencyContactName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Emergency Contact Phone'
+				dataType: string
+				lineageTag: f1abd2ae-b801-4989-9753-8b03aa348c1c
+				summarizeBy: none
+				sourceColumn: EmergencyContactPhone
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Salaried Flag'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: 5ea3e0f5-d66f-461a-bc3d-dd2b87674362
+				summarizeBy: none
+				sourceColumn: SalariedFlag
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Gender'
+				dataType: string
+				lineageTag: d3a5c662-c509-4932-ba02-50cd5275b769
+				summarizeBy: none
+				sourceColumn: Gender
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Pay Frequency'
+				dataType: int64
+				formatString: 0
+				lineageTag: 22fd5dec-fa2f-4ccb-ae04-9694c7ce1bb6
+				summarizeBy: none
+				sourceColumn: PayFrequency
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Base Rate'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 101d739c-0f05-439f-96d5-3467ccaf4449
+				summarizeBy: none
+				sourceColumn: BaseRate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Vacation Hours'
+				dataType: int64
+				formatString: 0
+				lineageTag: 9f941d33-f451-4d08-bb0c-e72d10d91a46
+				summarizeBy: none
+				sourceColumn: VacationHours
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sick Leave Hours'
+				dataType: int64
+				formatString: 0
+				lineageTag: b200e5ea-b3f1-4276-844b-47e5ec854818
+				summarizeBy: none
+				sourceColumn: SickLeaveHours
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Current Flag'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: f7a5b1e0-0ba2-492b-8b12-eb1deab614d4
+				summarizeBy: none
+				sourceColumn: CurrentFlag
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Person Flag'
+				dataType: boolean
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				lineageTag: d2b0e5df-9639-4915-87ce-f9628128692c
+				summarizeBy: none
+				sourceColumn: SalesPersonFlag
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Department Name'
+				dataType: string
+				lineageTag: 138e86cb-e24c-4c32-ab4f-b894b99082b1
+				summarizeBy: none
+				sourceColumn: DepartmentName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Start Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: d10cd9bf-9a30-4389-a67e-c05bd7ae3abc
+				summarizeBy: none
+				sourceColumn: StartDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'End Date'
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: fb111065-a40e-4a0d-9bef-9bfe03927012
+				summarizeBy: none
+				sourceColumn: EndDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column 'Status'
+				dataType: string
+				lineageTag: 2084206f-2f1d-4cdf-aefe-d6dfd028b27b
+				summarizeBy: none
+				sourceColumn: Status
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimEmployee = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimEmployee = Source{[Schema="dbo",Item="DimEmployee"]}[Data]
+						in
+						    dbo_DimEmployee
+
+			annotation PBI_ResultType = Table
+
+		table DimReseller
+			lineageTag: 5ff16bc5-0494-4235-bf02-1d4095a1e7c8
+
+			column 'Reseller Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 24cd3b87-ee1b-43d2-9a81-a90df39611c6
+				summarizeBy: none
+				sourceColumn: ResellerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Geography Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 4b16b924-c324-4a9b-9c95-23fd825fa0cc
+				summarizeBy: none
+				sourceColumn: GeographyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Reseller Alternate Key'
+				dataType: string
+				lineageTag: 71bb8054-7604-41f6-8a9a-82978a1cab44
+				summarizeBy: none
+				sourceColumn: ResellerAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Phone'
+				dataType: string
+				lineageTag: 7b1041af-0e2f-4b66-a7b4-4fc29d6b0c69
+				summarizeBy: none
+				sourceColumn: Phone
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Business Type'
+				dataType: string
+				lineageTag: c2bc87b7-dcfb-47fd-bcad-4dd55eb3f580
+				summarizeBy: none
+				sourceColumn: BusinessType
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Reseller Name'
+				dataType: string
+				lineageTag: b7e78e60-eb62-4751-b714-25fd20f5cc9f
+				summarizeBy: none
+				sourceColumn: ResellerName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Number Employees'
+				dataType: int64
+				formatString: 0
+				lineageTag: 02d95151-8a9d-469f-b6f1-c9a0d070ec13
+				summarizeBy: none
+				sourceColumn: NumberEmployees
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Frequency'
+				dataType: string
+				lineageTag: dd688c7c-f44d-43fa-9299-a9b0d9e888f5
+				summarizeBy: none
+				sourceColumn: OrderFrequency
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Order Month'
+				dataType: int64
+				formatString: 0
+				lineageTag: e2a93ab5-9014-420d-80f9-d788ec35ecbf
+				summarizeBy: none
+				sourceColumn: OrderMonth
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'First Order Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 3c40419f-f806-4fb3-8737-ec802ce3b4e9
+				summarizeBy: none
+				sourceColumn: FirstOrderYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Last Order Year'
+				dataType: int64
+				formatString: 0
+				lineageTag: 4dc18966-1bf8-47db-91fb-5b5492282d99
+				summarizeBy: none
+				sourceColumn: LastOrderYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Line'
+				dataType: string
+				lineageTag: 299196f7-8337-4a24-8878-67e6549e2880
+				summarizeBy: none
+				sourceColumn: ProductLine
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Address Line1'
+				dataType: string
+				lineageTag: 6753a141-77fc-4ead-875d-e6938200fcfd
+				summarizeBy: none
+				sourceColumn: AddressLine1
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Address Line2'
+				dataType: string
+				lineageTag: fc949e05-cdff-420c-9a83-5c731d7b90a2
+				summarizeBy: none
+				sourceColumn: AddressLine2
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Annual Sales'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 8dd1a300-f20a-420e-84ee-babcdc5058f0
+				summarizeBy: none
+				sourceColumn: AnnualSales
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Bank Name'
+				dataType: string
+				lineageTag: 9316a78f-099c-47fd-8aac-e1aab3ec894c
+				summarizeBy: none
+				sourceColumn: BankName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Min Payment Type'
+				dataType: int64
+				formatString: 0
+				lineageTag: 06723ab7-2826-4a89-831b-22355210d133
+				summarizeBy: none
+				sourceColumn: MinPaymentType
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Min Payment Amount'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: cac8a40a-e500-4689-9c6e-f9cc476d1bea
+				summarizeBy: none
+				sourceColumn: MinPaymentAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Annual Revenue'
+				dataType: decimal
+				formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+				lineageTag: 106e191a-2d3e-4975-802c-1fc9ad0c7cd4
+				summarizeBy: none
+				sourceColumn: AnnualRevenue
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
+
+			column 'Year Opened'
+				dataType: int64
+				formatString: 0
+				lineageTag: ba6dcc83-2bb8-44f2-a662-f8aaf1a03ce4
+				summarizeBy: none
+				sourceColumn: YearOpened
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimReseller = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimReseller = Source{[Schema="dbo",Item="DimReseller"]}[Data]
+						in
+						    dbo_DimReseller
+
+			annotation PBI_ResultType = Table
+
+		table DimProductCategory
+			lineageTag: b1eafd95-9cdb-48a0-aa22-35595240664f
+
+			column 'Product Category Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: d6fe335b-4cc5-48ff-8f80-9e4e9f160a1b
+				summarizeBy: none
+				sourceColumn: ProductCategoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Category Alternate Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 0d4fb434-8b5c-4762-81e3-0a4405536cf5
+				summarizeBy: none
+				sourceColumn: ProductCategoryAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Product Category Name'
+				dataType: string
+				lineageTag: b78e907c-3b2a-45fc-8a51-80447c45ea46
+				summarizeBy: none
+				sourceColumn: EnglishProductCategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Product Category Name'
+				dataType: string
+				lineageTag: b7a6d2ad-e52a-4bbe-9bba-65887dea6ee2
+				summarizeBy: none
+				sourceColumn: SpanishProductCategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Product Category Name'
+				dataType: string
+				lineageTag: c249521d-ffba-4f99-9114-6431b97e2cde
+				summarizeBy: none
+				sourceColumn: FrenchProductCategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimProductCategory = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimProductCategory = Source{[Schema="dbo",Item="DimProductCategory"]}[Data]
+						in
+						    dbo_DimProductCategory
+
+			annotation PBI_ResultType = Table
+
+		table DimProductSubcategory
+			lineageTag: 5521c2f8-8648-4855-8186-7844e0f2ee46
+
+			column 'Product Subcategory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 1c682fb5-2380-4083-abd9-76f7b07482bc
+				summarizeBy: none
+				sourceColumn: ProductSubcategoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Subcategory Alternate Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: ac4eb06d-63a1-4559-b347-75ee30144e28
+				summarizeBy: count
+				sourceColumn: ProductSubcategoryAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Product Subcategory Name'
+				dataType: string
+				lineageTag: 9bacb3c2-dd14-4752-8fd7-cc71bb5a7382
+				summarizeBy: none
+				sourceColumn: EnglishProductSubcategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Product Subcategory Name'
+				dataType: string
+				lineageTag: 45becd23-3a89-46ae-adcf-fa68469877b1
+				summarizeBy: none
+				sourceColumn: SpanishProductSubcategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Product Subcategory Name'
+				dataType: string
+				lineageTag: 4b0479da-f652-4c2a-bf49-d00e44802d09
+				summarizeBy: none
+				sourceColumn: FrenchProductSubcategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Product Category Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 72084d33-8348-41ee-91aa-5dc541530930
+				summarizeBy: none
+				sourceColumn: ProductCategoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimProductSubcategory = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimProductSubcategory = Source{[Schema="dbo",Item="DimProductSubcategory"]}[Data]
+						in
+						    dbo_DimProductSubcategory
+
+			annotation PBI_ResultType = Table
+
+		table DimGeography
+			lineageTag: 5b580acd-1550-4f06-b2a5-6624e009a960
+
+			column 'Geography Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 1e067ccd-317b-4d60-b09b-f0e5a2b497a4
+				summarizeBy: none
+				sourceColumn: GeographyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'City'
+				dataType: string
+				lineageTag: 16d23211-e2cf-483d-bc94-8ff76f495d43
+				summarizeBy: none
+				sourceColumn: City
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'State Province Code'
+				dataType: string
+				lineageTag: 3898cb33-68e4-4be5-9d89-e7cf62c657dd
+				summarizeBy: none
+				sourceColumn: StateProvinceCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'State Province Name'
+				dataType: string
+				lineageTag: 490096a2-7318-478c-a54d-a9ab80a34d06
+				summarizeBy: none
+				sourceColumn: StateProvinceName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Country Region Code'
+				dataType: string
+				lineageTag: 3c45fd58-9b3d-433b-9e6f-6030db91af53
+				summarizeBy: none
+				sourceColumn: CountryRegionCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'English Country Region Name'
+				dataType: string
+				lineageTag: 75a05723-8d0a-4a66-8cd2-befb987578d0
+				summarizeBy: none
+				sourceColumn: EnglishCountryRegionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Spanish Country Region Name'
+				dataType: string
+				lineageTag: 849cdd78-74cb-423c-bce4-6cbf38755be1
+				summarizeBy: none
+				sourceColumn: SpanishCountryRegionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'French Country Region Name'
+				dataType: string
+				lineageTag: c2e1d38a-5221-43bd-b16b-6284ff99575f
+				summarizeBy: none
+				sourceColumn: FrenchCountryRegionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Postal Code'
+				dataType: string
+				lineageTag: 3ab5ee13-8a72-4e8a-a0cd-5808a0e89ca0
+				summarizeBy: none
+				sourceColumn: PostalCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Sales Territory Key'
+				dataType: int64
+				formatString: 0
+				lineageTag: 58706da2-ad10-4731-bdb1-3155181292c4
+				summarizeBy: none
+				sourceColumn: SalesTerritoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column 'Ip Address Locator'
+				dataType: string
+				lineageTag: ceac0e80-d7fa-4b20-a7bd-9ec303987d0a
+				summarizeBy: none
+				sourceColumn: IpAddressLocator
+
+				annotation SummarizationSetBy = Automatic
+
+			partition DimGeography = m
+				mode: import
+				source =
+						let
+						    Source = Sql.Database("localhost\sql19", "AdventureWorksDW2019"),
+						    dbo_DimGeography = Source{[Schema="dbo",Item="DimGeography"]}[Data]
+						in
+						    dbo_DimGeography
+
+			annotation PBI_NavigationStepName = Navigation
+
+			annotation PBI_ResultType = Table
+
+		relationship 47669390-7eaa-458e-9f5c-913e4bfec185
+			fromColumn: FactInternetSales.CurrencyKey
+			toColumn: DimCurrency.CurrencyKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 27b6ea32-07e9-476a-8a2d-1d9457783f93
+			fromColumn: FactInternetSales.CustomerKey
+			toColumn: DimCustomer.CustomerKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 70fbc79e-916a-431f-942b-07539a99b7d6
+			fromColumn: FactInternetSales.DueDateKey
+			toColumn: DimDate.DateKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 04dd7d81-8bf9-4bc8-8b34-70f0e31f5c72
+			isActive: false
+			fromColumn: FactInternetSales.OrderDateKey
+			toColumn: DimDate.DateKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship d5a2aa82-8c32-46e9-94ab-9f27d6a76eac
+			isActive: false
+			fromColumn: FactInternetSales.ShipDateKey
+			toColumn: DimDate.DateKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 641cdd15-c4ee-4d35-a085-8a440b061d37
+			fromColumn: FactInternetSales.ProductKey
+			toColumn: DimProduct.ProductKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship b5a48c9d-6abb-4874-9663-d26ee73646c7
+			fromColumn: FactInternetSales.PromotionKey
+			toColumn: DimPromotion.PromotionKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship d83016e0-4280-4c89-9226-6734ed202eb0
+			fromColumn: FactInternetSales.SalesTerritoryKey
+			toColumn: DimSalesTerritory.SalesTerritoryKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 9dc5eea7-848e-41c8-8d86-20738f184b7a
+			fromColumn: FactResellerSales.CurrencyKey
+			toColumn: DimCurrency.CurrencyKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship e96b6e29-ab9b-4b85-8ccb-ee9fb76f06a0
+			fromColumn: FactResellerSales.DueDateKey
+			toColumn: DimDate.DateKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship e8563c0f-d855-414d-a70b-de4ec2bac54e
+			isActive: false
+			fromColumn: FactResellerSales.OrderDateKey
+			toColumn: DimDate.DateKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 3b29a6bd-1864-4693-894b-3997dfa60f37
+			isActive: false
+			fromColumn: FactResellerSales.ShipDateKey
+			toColumn: DimDate.DateKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 1917a425-0d8b-4da9-ba3e-4aabd3b88ab3
+			fromColumn: FactResellerSales.EmployeeKey
+			toColumn: DimEmployee.EmployeeKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 9f303c68-2287-4cb1-b5e1-c135cf55a40f
+			fromColumn: FactResellerSales.ProductKey
+			toColumn: DimProduct.ProductKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 27f0ab92-22b8-4781-bb29-319acaeb4307
+			fromColumn: FactResellerSales.PromotionKey
+			toColumn: DimPromotion.PromotionKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship fd39cf9e-a898-45c7-aeb7-e1ae3523130b
+			fromColumn: FactResellerSales.ResellerKey
+			toColumn: DimReseller.ResellerKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship c5483870-640f-4637-9860-f190deb9e42e
+			fromColumn: FactResellerSales.SalesTerritoryKey
+			toColumn: DimSalesTerritory.SalesTerritoryKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 88368af0-510b-4a60-af9a-993e0b4f05fd
+			fromColumn: DimProduct.ProductSubcategoryKey
+			toColumn: DimProductSubcategory.ProductSubcategoryKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 5bf316f2-d4de-4ba3-ab41-fd0a7d0d2edc
+			isActive: false
+			fromColumn: DimEmployee.SalesTerritoryKey
+			toColumn: DimSalesTerritory.SalesTerritoryKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship a263e50a-2528-44c2-96b2-f8ee044dc40a
+			fromColumn: DimProductSubcategory.ProductCategoryKey
+			toColumn: DimProductCategory.ProductCategoryKey
+
+			annotation PBI_IsFromSource = FS
+
+		relationship 99be50c9-c5b6-01d0-0b4f-7538c3cac1ed
+			fromColumn: DimCustomer.GeographyKey
+			toColumn: DimGeography.GeographyKey
+
+		role 'Australia Sales'
+			modelPermission: read
+
+			tablePermission DimSalesTerritory = [SalesTerritoryCountry] == "Australia"
+
+			annotation PBI_Id = dce64e7087214116b7bc447dc5c21260
+
+		perspective Reseller
+
+			perspectiveTable FactResellerSales
+
+				perspectiveColumn ProductKey
+
+				perspectiveColumn OrderDateKey
+
+				perspectiveColumn DueDateKey
+
+				perspectiveColumn ShipDateKey
+
+				perspectiveColumn ResellerKey
+
+				perspectiveColumn EmployeeKey
+
+				perspectiveColumn PromotionKey
+
+				perspectiveColumn CurrencyKey
+
+				perspectiveColumn SalesTerritoryKey
+
+				perspectiveColumn SalesOrderNumber
+
+				perspectiveColumn SalesOrderLineNumber
+
+				perspectiveColumn RevisionNumber
+
+				perspectiveColumn OrderQuantity
+
+				perspectiveColumn UnitPrice
+
+				perspectiveColumn ExtendedAmount
+
+				perspectiveColumn UnitPriceDiscountPct
+
+				perspectiveColumn DiscountAmount
+
+				perspectiveColumn ProductStandardCost
+
+				perspectiveColumn TotalProductCost
+
+				perspectiveColumn SalesAmount
+
+				perspectiveColumn TaxAmt
+
+				perspectiveColumn Freight
+
+				perspectiveColumn CarrierTrackingNumber
+
+				perspectiveColumn CustomerPONumber
+
+				perspectiveColumn OrderDate
+
+				perspectiveColumn DueDate
+
+				perspectiveColumn ShipDate
+
+			perspectiveTable DimDate
+
+				perspectiveColumn DateKey
+
+				perspectiveColumn FullDateAlternateKey
+
+				perspectiveColumn DayNumberOfWeek
+
+				perspectiveColumn EnglishDayNameOfWeek
+
+				perspectiveColumn SpanishDayNameOfWeek
+
+				perspectiveColumn FrenchDayNameOfWeek
+
+				perspectiveColumn DayNumberOfMonth
+
+				perspectiveColumn DayNumberOfYear
+
+				perspectiveColumn WeekNumberOfYear
+
+				perspectiveColumn EnglishMonthName
+
+				perspectiveColumn SpanishMonthName
+
+				perspectiveColumn FrenchMonthName
+
+				perspectiveColumn MonthNumberOfYear
+
+				perspectiveColumn CalendarQuarter
+
+				perspectiveColumn CalendarYear
+
+				perspectiveColumn CalendarSemester
+
+				perspectiveColumn FiscalQuarter
+
+				perspectiveColumn FiscalYear
+
+				perspectiveColumn FiscalSemester
+
+			perspectiveTable DimProduct
+
+				perspectiveColumn ProductKey
+
+				perspectiveColumn ProductAlternateKey
+
+				perspectiveColumn ProductSubcategoryKey
+
+				perspectiveColumn WeightUnitMeasureCode
+
+				perspectiveColumn SizeUnitMeasureCode
+
+				perspectiveColumn EnglishProductName
+
+				perspectiveColumn SpanishProductName
+
+				perspectiveColumn FrenchProductName
+
+				perspectiveColumn StandardCost
+
+				perspectiveColumn FinishedGoodsFlag
+
+				perspectiveColumn Color
+
+				perspectiveColumn SafetyStockLevel
+
+				perspectiveColumn ReorderPoint
+
+				perspectiveColumn ListPrice
+
+				perspectiveColumn Size
+
+				perspectiveColumn SizeRange
+
+				perspectiveColumn Weight
+
+				perspectiveColumn DaysToManufacture
+
+				perspectiveColumn ProductLine
+
+				perspectiveColumn DealerPrice
+
+				perspectiveColumn Class
+
+				perspectiveColumn Style
+
+				perspectiveColumn ModelName
+
+				perspectiveColumn EnglishDescription
+
+				perspectiveColumn FrenchDescription
+
+				perspectiveColumn ChineseDescription
+
+				perspectiveColumn ArabicDescription
+
+				perspectiveColumn HebrewDescription
+
+				perspectiveColumn ThaiDescription
+
+				perspectiveColumn GermanDescription
+
+				perspectiveColumn JapaneseDescription
+
+				perspectiveColumn TurkishDescription
+
+				perspectiveColumn StartDate
+
+				perspectiveColumn EndDate
+
+				perspectiveColumn Status
+
+			perspectiveTable DimProductCategory
+
+				perspectiveColumn ProductCategoryKey
+
+				perspectiveColumn ProductCategoryAlternateKey
+
+				perspectiveColumn EnglishProductCategoryName
+
+				perspectiveColumn SpanishProductCategoryName
+
+				perspectiveColumn FrenchProductCategoryName
+
+			perspectiveTable DimProductSubcategory
+
+				perspectiveColumn ProductSubcategoryKey
+
+				perspectiveColumn ProductSubcategoryAlternateKey
+
+				perspectiveColumn EnglishProductSubcategoryName
+
+				perspectiveColumn SpanishProductSubcategoryName
+
+				perspectiveColumn FrenchProductSubcategoryName
+
+				perspectiveColumn ProductCategoryKey
+
+			perspectiveTable DimReseller
+
+				perspectiveColumn ResellerKey
+
+				perspectiveColumn GeographyKey
+
+				perspectiveColumn ResellerAlternateKey
+
+				perspectiveColumn Phone
+
+				perspectiveColumn BusinessType
+
+				perspectiveColumn ResellerName
+
+				perspectiveColumn NumberEmployees
+
+				perspectiveColumn OrderFrequency
+
+				perspectiveColumn OrderMonth
+
+				perspectiveColumn FirstOrderYear
+
+				perspectiveColumn LastOrderYear
+
+				perspectiveColumn ProductLine
+
+				perspectiveColumn AddressLine1
+
+				perspectiveColumn AddressLine2
+
+				perspectiveColumn AnnualSales
+
+				perspectiveColumn BankName
+
+				perspectiveColumn MinPaymentType
+
+				perspectiveColumn MinPaymentAmount
+
+				perspectiveColumn AnnualRevenue
+
+				perspectiveColumn YearOpened
+
+			perspectiveTable DimCurrency
+
+				perspectiveColumn CurrencyKey
+
+				perspectiveColumn CurrencyAlternateKey
+
+				perspectiveColumn CurrencyName
+
+			perspectiveTable DimEmployee
+
+				perspectiveColumn EmployeeKey
+
+				perspectiveColumn ParentEmployeeKey
+
+				perspectiveColumn EmployeeNationalIDAlternateKey
+
+				perspectiveColumn ParentEmployeeNationalIDAlternateKey
+
+				perspectiveColumn SalesTerritoryKey
+
+				perspectiveColumn FirstName
+
+				perspectiveColumn LastName
+
+				perspectiveColumn MiddleName
+
+				perspectiveColumn NameStyle
+
+				perspectiveColumn Title
+
+				perspectiveColumn HireDate
+
+				perspectiveColumn BirthDate
+
+				perspectiveColumn LoginID
+
+				perspectiveColumn EmailAddress
+
+				perspectiveColumn Phone
+
+				perspectiveColumn MaritalStatus
+
+				perspectiveColumn EmergencyContactName
+
+				perspectiveColumn EmergencyContactPhone
+
+				perspectiveColumn SalariedFlag
+
+				perspectiveColumn Gender
+
+				perspectiveColumn PayFrequency
+
+				perspectiveColumn BaseRate
+
+				perspectiveColumn VacationHours
+
+				perspectiveColumn SickLeaveHours
+
+				perspectiveColumn CurrentFlag
+
+				perspectiveColumn SalesPersonFlag
+
+				perspectiveColumn DepartmentName
+
+				perspectiveColumn StartDate
+
+				perspectiveColumn EndDate
+
+				perspectiveColumn Status
+
+			perspectiveTable DimPromotion
+
+				perspectiveColumn PromotionKey
+
+				perspectiveColumn PromotionAlternateKey
+
+				perspectiveColumn EnglishPromotionName
+
+				perspectiveColumn SpanishPromotionName
+
+				perspectiveColumn FrenchPromotionName
+
+				perspectiveColumn DiscountPct
+
+				perspectiveColumn EnglishPromotionType
+
+				perspectiveColumn SpanishPromotionType
+
+				perspectiveColumn FrenchPromotionType
+
+				perspectiveColumn EnglishPromotionCategory
+
+				perspectiveColumn SpanishPromotionCategory
+
+				perspectiveColumn FrenchPromotionCategory
+
+				perspectiveColumn StartDate
+
+				perspectiveColumn EndDate
+
+				perspectiveColumn MinQty
+
+				perspectiveColumn MaxQty
+
+		perspective Internet
+
+			perspectiveTable FactInternetSales
+
+				perspectiveMeasure 'Internet Sales Amount'
+
+				perspectiveMeasure 'Internet Tax Amount'
+
+				perspectiveMeasure 'Internet Total Cost'
+
+				perspectiveMeasure 'Internet Margin'
+
+				perspectiveColumn ProductKey
+
+				perspectiveColumn OrderDateKey
+
+				perspectiveColumn DueDateKey
+
+				perspectiveColumn ShipDateKey
+
+				perspectiveColumn CustomerKey
+
+				perspectiveColumn PromotionKey
+
+				perspectiveColumn CurrencyKey
+
+				perspectiveColumn SalesTerritoryKey
+
+				perspectiveColumn SalesOrderNumber
+
+				perspectiveColumn SalesOrderLineNumber
+
+				perspectiveColumn RevisionNumber
+
+				perspectiveColumn OrderQuantity
+
+				perspectiveColumn UnitPrice
+
+				perspectiveColumn ExtendedAmount
+
+				perspectiveColumn UnitPriceDiscountPct
+
+				perspectiveColumn DiscountAmount
+
+				perspectiveColumn ProductStandardCost
+
+				perspectiveColumn TotalProductCost
+
+				perspectiveColumn SalesAmount
+
+				perspectiveColumn TaxAmt
+
+				perspectiveColumn Freight
+
+				perspectiveColumn CarrierTrackingNumber
+
+				perspectiveColumn CustomerPONumber
+
+				perspectiveColumn OrderDate
+
+				perspectiveColumn DueDate
+
+				perspectiveColumn ShipDate
+
+			perspectiveTable DimDate
+
+				perspectiveColumn DateKey
+
+				perspectiveColumn FullDateAlternateKey
+
+				perspectiveColumn DayNumberOfWeek
+
+				perspectiveColumn EnglishDayNameOfWeek
+
+				perspectiveColumn SpanishDayNameOfWeek
+
+				perspectiveColumn FrenchDayNameOfWeek
+
+				perspectiveColumn DayNumberOfMonth
+
+				perspectiveColumn DayNumberOfYear
+
+				perspectiveColumn WeekNumberOfYear
+
+				perspectiveColumn EnglishMonthName
+
+				perspectiveColumn SpanishMonthName
+
+				perspectiveColumn FrenchMonthName
+
+				perspectiveColumn MonthNumberOfYear
+
+				perspectiveColumn CalendarQuarter
+
+				perspectiveColumn CalendarYear
+
+				perspectiveColumn CalendarSemester
+
+				perspectiveColumn FiscalQuarter
+
+				perspectiveColumn FiscalYear
+
+				perspectiveColumn FiscalSemester
+
+			perspectiveTable DimSalesTerritory
+
+				perspectiveColumn SalesTerritoryKey
+
+				perspectiveColumn SalesTerritoryAlternateKey
+
+				perspectiveColumn SalesTerritoryRegion
+
+				perspectiveColumn SalesTerritoryCountry
+
+				perspectiveColumn SalesTerritoryGroup
+
+			perspectiveTable DimProduct
+
+				perspectiveColumn ProductKey
+
+				perspectiveColumn ProductAlternateKey
+
+				perspectiveColumn ProductSubcategoryKey
+
+				perspectiveColumn WeightUnitMeasureCode
+
+				perspectiveColumn SizeUnitMeasureCode
+
+				perspectiveColumn EnglishProductName
+
+				perspectiveColumn SpanishProductName
+
+				perspectiveColumn FrenchProductName
+
+				perspectiveColumn StandardCost
+
+				perspectiveColumn FinishedGoodsFlag
+
+				perspectiveColumn Color
+
+				perspectiveColumn SafetyStockLevel
+
+				perspectiveColumn ReorderPoint
+
+				perspectiveColumn ListPrice
+
+				perspectiveColumn Size
+
+				perspectiveColumn SizeRange
+
+				perspectiveColumn Weight
+
+				perspectiveColumn DaysToManufacture
+
+				perspectiveColumn ProductLine
+
+				perspectiveColumn DealerPrice
+
+				perspectiveColumn Class
+
+				perspectiveColumn Style
+
+				perspectiveColumn ModelName
+
+				perspectiveColumn EnglishDescription
+
+				perspectiveColumn FrenchDescription
+
+				perspectiveColumn ChineseDescription
+
+				perspectiveColumn ArabicDescription
+
+				perspectiveColumn HebrewDescription
+
+				perspectiveColumn ThaiDescription
+
+				perspectiveColumn GermanDescription
+
+				perspectiveColumn JapaneseDescription
+
+				perspectiveColumn TurkishDescription
+
+				perspectiveColumn StartDate
+
+				perspectiveColumn EndDate
+
+				perspectiveColumn Status
+
+			perspectiveTable DimProductCategory
+
+				perspectiveColumn ProductCategoryKey
+
+				perspectiveColumn ProductCategoryAlternateKey
+
+				perspectiveColumn EnglishProductCategoryName
+
+				perspectiveColumn SpanishProductCategoryName
+
+				perspectiveColumn FrenchProductCategoryName
+
+			perspectiveTable DimProductSubcategory
+
+				perspectiveColumn ProductSubcategoryKey
+
+				perspectiveColumn ProductSubcategoryAlternateKey
+
+				perspectiveColumn EnglishProductSubcategoryName
+
+				perspectiveColumn SpanishProductSubcategoryName
+
+				perspectiveColumn FrenchProductSubcategoryName
+
+				perspectiveColumn ProductCategoryKey
+
+			perspectiveTable DimCustomer
+
+				perspectiveColumn CustomerKey
+
+				perspectiveColumn GeographyKey
+
+				perspectiveColumn CustomerAlternateKey
+
+				perspectiveColumn Title
+
+				perspectiveColumn FirstName
+
+				perspectiveColumn MiddleName
+
+				perspectiveColumn LastName
+
+				perspectiveColumn NameStyle
+
+				perspectiveColumn BirthDate
+
+				perspectiveColumn MaritalStatus
+
+				perspectiveColumn Suffix
+
+				perspectiveColumn Gender
+
+				perspectiveColumn EmailAddress
+
+				perspectiveColumn YearlyIncome
+
+				perspectiveColumn TotalChildren
+
+				perspectiveColumn NumberChildrenAtHome
+
+				perspectiveColumn EnglishEducation
+
+				perspectiveColumn SpanishEducation
+
+				perspectiveColumn FrenchEducation
+
+				perspectiveColumn EnglishOccupation
+
+				perspectiveColumn SpanishOccupation
+
+				perspectiveColumn FrenchOccupation
+
+				perspectiveColumn HouseOwnerFlag
+
+				perspectiveColumn NumberCarsOwned
+
+				perspectiveColumn AddressLine1
+
+				perspectiveColumn AddressLine2
+
+				perspectiveColumn Phone
+
+				perspectiveColumn DateFirstPurchase
+
+				perspectiveColumn CommuteDistance
+
+			perspectiveTable DimCurrency
+
+				perspectiveColumn CurrencyKey
+
+				perspectiveColumn CurrencyAlternateKey
+
+				perspectiveColumn CurrencyName
+
+			perspectiveTable DimPromotion
+
+				perspectiveColumn PromotionKey
+
+				perspectiveColumn PromotionAlternateKey
+
+				perspectiveColumn EnglishPromotionName
+
+				perspectiveColumn SpanishPromotionName
+
+				perspectiveColumn FrenchPromotionName
+
+				perspectiveColumn DiscountPct
+
+				perspectiveColumn EnglishPromotionType
+
+				perspectiveColumn SpanishPromotionType
+
+				perspectiveColumn FrenchPromotionType
+
+				perspectiveColumn EnglishPromotionCategory
+
+				perspectiveColumn SpanishPromotionCategory
+
+				perspectiveColumn FrenchPromotionCategory
+
+				perspectiveColumn StartDate
+
+				perspectiveColumn EndDate
+
+				perspectiveColumn MinQty
+
+				perspectiveColumn MaxQty
+
+			perspectiveTable DimGeography
+
+				perspectiveColumn GeographyKey
+
+				perspectiveColumn City
+
+				perspectiveColumn StateProvinceCode
+
+				perspectiveColumn StateProvinceName
+
+				perspectiveColumn CountryRegionCode
+
+				perspectiveColumn EnglishCountryRegionName
+
+				perspectiveColumn SpanishCountryRegionName
+
+				perspectiveColumn FrenchCountryRegionName
+
+				perspectiveColumn PostalCode
+
+				perspectiveColumn SalesTerritoryKey
+
+				perspectiveColumn IpAddressLocator
+
+		cultureInfo en-US
+
+			linguisticMetadata =
+					{
+					  "Version": "1.0.0",
+					  "Language": "en-US"
+					}
+				contentType: json
+
+		annotation __PBI_TimeIntelligenceEnabled = 0
+
+		annotation PBI_QueryOrder = ["FactInternetSales","FactResellerSales","DimCurrency","DimCustomer","DimDate","DimProduct","DimPromotion","DimSalesTerritory","DimEmployee","DimReseller","DimProductCategory","DimProductSubcategory","DimGeography"]
+
+		annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode","WebModelingEdit","TMDL-Extension"]
+
+		annotation __TEdtr = 1
+

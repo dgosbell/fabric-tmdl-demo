@@ -2,19 +2,19 @@ table FactInternetSales
 	lineageTag: c96d0d90-1cb6-45be-afa8-45c5133f4cd9
 
 	measure 'Internet Sales Amount' = SUM(FactInternetSales[SalesAmount])
-		formatString: \$#,0.000;-\$#,0.000;\$#,0.000
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
 		lineageTag: caab5c0c-d852-401d-b670-f257eb36ef94
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
 
 	measure 'Internet Tax Amount' = sum('FactInternetSales'[TaxAmt])
-		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
 		lineageTag: e81abeee-5400-4add-b5d6-248f3a014359
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
 
 	measure 'Internet Total Cost' = SUMX( FactInternetSales, FactInternetSales[TotalProductCost] * FactInternetSales[OrderQuantity])
-		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
 		lineageTag: 7315f1f2-329e-4d2a-bd70-38431ff9f154
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-AU"}
@@ -28,6 +28,10 @@ table FactInternetSales
 	measure '# Customers' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
 		formatString: 0
 		lineageTag: 3d622d7e-af22-48ee-a664-8e9e6e83d27c
+
+	measure '# Customers 2' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+		formatString: 0
+		lineageTag: 5c944c40-6934-4ebc-a156-f8c40705a9ce
 
 	column ProductKey
 		dataType: int64

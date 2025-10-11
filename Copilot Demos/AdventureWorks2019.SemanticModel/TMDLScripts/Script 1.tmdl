@@ -1,0 +1,11 @@
+createOrReplace
+
+	ref table FactInternetSales
+
+		measure '# Customers' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+			formatString: 0
+			lineageTag: 3d622d7e-af22-48ee-a664-8e9e6e83d27c
+
+		measure '# Customers 2' = DISTINCTCOUNT(FactInternetSales[CustomerKey])
+			formatString: 0
+		
